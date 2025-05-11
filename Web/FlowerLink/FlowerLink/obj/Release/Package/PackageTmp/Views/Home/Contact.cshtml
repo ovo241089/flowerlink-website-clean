@@ -1,0 +1,129 @@
+﻿@model FlowerLink.Models.BLL.contactBLL
+
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Banner.Count > 0 || ViewBag.Banner.Count != null)
+{
+    <div class="breadcrumb-area section-ptb" style="background: url(@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@ViewBag.Banner[0].Image) repeat scroll 0 0;background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title" data-translate="00cn0">Contact Us</h2>
+                    <!-- breadcrumb-list start -->
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00cn1">Contact</li>
+                    </ul>
+                    <!-- breadcrumb-list end -->
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].MainHeading </h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].ArabicMainHeading </h2>
+                    }
+                    <!-- breadcrumb-list start -->
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00cn1">Contact</li>
+                    </ul>
+                    <!-- breadcrumb-list end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+}
+
+<!-- Page Conttent -->
+<div class="page-content section-ptb contact-bg">
+    <div class="container w-100">
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <div class="contact-form">
+                    <div class="contact-form-info">
+                        <div class="contact-title">
+                            <h3 data-translate="00cn2">ANY QUERY</h3>
+                        </div>
+                        <form action="#" method="post" class="needs-validation" novalidate="" name="myform">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="Name" placeholder="Name *" required="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="email" class="form-control" name="Email" placeholder="Email *" required="">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="Phone" placeholder="Contact *" required="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="Subject" placeholder="Subject *" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="Message" placeholder="Message *" rows="5" required=""></textarea>
+                            </div>
+                            @*@Html.Captcha(5)*@
+                            @Html.MathCaptcha()
+                            <br />
+                            <p style="color:red">  @ViewBag.ErrMessage </p>
+                            <div class="text-center text-md-left">
+                                <button type="submit" class="btn btn-default"><span data-translate="000co30">Submit</span></button>
+                            </div>
+                        </form>
+                        <p class="mt-3 text-success">@ViewBag.Contact</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <div class="contact-infor">
+                    <div class="contact-title">
+                        <h3 data-translate="00cn0">CONTACT US</h3>
+                    </div>
+
+                    <div class="contact-address">
+                        <ul>
+                            <li>
+                                <strong data-translate="00cn4">Address :</strong> <span data-translate="00cn8">Flower Link, Al Taweela Complex, Building 20, Road 4101 Juffair, Kingdom of Bahrain</span>
+                            </li>
+                            <li><strong data-translate="00cn5">Email : </strong>info@flowerlink.net</li>
+                            <li>
+                                <strong data-translate="000co28">Telephone :</strong> +973 17 331400 <br />
+                                <strong data-translate="000co29">Mobile :</strong> +973 33441480
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="work-hours">
+                        <h5 data-translate="000co25">Working hours</h5>
+                        <p class="mb-1"><span data-translate="000co26"><strong>Monday &ndash; Sunday</strong> 10:00 AM &ndash; 02:00 PM  </span> <br /> <span data-translate="000co31">04:00 PM &ndash; 09:00 PM</span> </p>
+                        <p class="text-danger"><span data-translate="000co27"><strong>Friday </strong>: Closed</span> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// Page Conttent -->

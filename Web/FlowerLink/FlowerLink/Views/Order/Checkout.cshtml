@@ -1,0 +1,2236 @@
+﻿@model FlowerLink.Models.BLL.productBLL
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <link href="~/Content/assets/css/DatePicker/bootstrap-datepicker3.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/DatePicker/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/DatePicker/bootstrap-datepicker3.standalone.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/DatePicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />
+
+}
+
+<style>
+
+    .modal-dialog-scrollable .modal-content {
+        max-height: calc(100vh - 1rem);
+        overflow: inherit !important;
+    }
+
+    @@media only screen and (max-width: 479px) {
+        .container {
+            width: auto;
+        }
+
+        #msform input, #msform textarea {
+            padding: 0px 8px 4px 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: auto !important;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 16px;
+            letter-spacing: 1px;
+            right: 1px !important;
+        }
+
+        #msform fieldset .form-card {
+            background: white;
+            border: 0 none;
+            border-radius: 0px;
+            box-shadow: 0 2px 2px 2px rgb(0 0 0 / 20%);
+            padding: 20px 10px 10px 10px !important;
+            box-sizing: border-box;
+            width: auto !important;
+            margin: 0 3% 20px 3%;
+            position: relative;
+        }
+
+        .checkout-coupon input {
+            border: 1px solid #999999;
+            color: #555;
+            padding: 1px 1px;
+            width: auto;
+        }
+
+        #msform .action-button-previous {
+            width: 100px !important;
+        }
+
+        #msform input, #msform textarea {
+            padding: 0px 8px 4px 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: 100% !important;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .ion-link {
+            display: none !important;
+        }
+
+        .pt-4, .py-4 {
+            padding-top: 0rem !important;
+        }
+
+        #msform fieldset .form-card {
+            background: white;
+            border: 0 none;
+            border-radius: 0px;
+            box-shadow: 0 1px 1px 1px rgb(0 0 0 / 20%);
+            padding: 1px 28px 30px 18px;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0px 0% 0px 2%;
+            position: relative;
+        }
+
+        #msform .action-button {
+            width: 55% !important;
+            background: #000263;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 11px 5px !important;
+            margin: 10px 5px !important;
+        }
+
+        @@media only screen and (max-width: 479px) {
+            .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+                max-height: 550px !important;
+                left: -8px;
+                width: 366px !important;
+            }
+        }
+
+        #map-canvas {
+            height: 500px;
+            width: auto !important;
+        }
+
+        .product-image > a img {
+            width: 100%;
+            height: 142px !important;
+            border-radius: 8px;
+            object-fit: fill;
+        }
+    }
+
+
+    .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+        max-height: 550px !important;
+    }
+
+    .modal-dialog-centered.modal-dialog-scrollable-Login .modal-content {
+        max-height: 750px !important;
+    }
+
+    .has-search .form-control {
+        padding-left: 2.375rem;
+    }
+
+    .has-search .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 59.375rem !important;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+    }
+
+
+    .form-check-input {
+        position: absolute;
+        margin-top: 0.3rem;
+        margin-left: 12rem;
+    }
+
+    #search_input {
+        font-size: 18px;
+        width: 430px;
+        height: 40px;
+        margin: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    #map-canvas {
+        height: 500px;
+        width: 100%;
+    }
+
+    .all-product-image {
+        background: white;
+        border-radius: 0.6rem !important;
+        box-shadow: 0 .9rem 1rem rgba(0, 0, 0, 0) !important;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+    }
+
+
+    .section-title p {
+        max-width: 640px;
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
+
+    @@font-face {
+        font-family: 'fa-regular-400';
+        src: url('../../fonts/fa-regular-400.ttf') format('truetype');
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    .has-search .form-control {
+        padding-left: 2.375rem;
+    }
+
+    .has-search .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+    }
+
+    /*form styles*/
+    #msform {
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+    }
+
+        #msform fieldset .form-card {
+            background: white;
+            border: 0 none;
+            border-radius: 0px;
+            box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+            padding: 20px 40px 30px 40px;
+            box-sizing: border-box;
+            width: 94%;
+            margin: 0 3% 20px 3%;
+            /*stacking fieldsets above each other*/
+            position: relative;
+        }
+
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding-bottom: 20px;
+            /*stacking fieldsets above each other*/
+            position: relative;
+        }
+
+            /*Hide all except first fieldset*/
+            #msform fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+            #msform fieldset .form-card {
+                text-align: left;
+                color: #9E9E9E;
+            }
+
+        #msform input, #msform textarea {
+            padding: 0px 8px 4px 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+            #msform input:focus, #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: none;
+                font-weight: bold;
+                border-bottom: 2px solid #000263;
+                outline-width: 0;
+            }
+
+        /*Blue Buttons*/
+        #msform .action-button {
+            width: 50%;
+            background: #000263;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button:hover, #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #000263;
+            }
+
+        /*Previous Buttons*/
+        #msform .action-button-previous {
+            width: 100px;
+            background: #616161;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+            }
+
+    /*Dropdown List Exp Date*/
+    select.list-dt {
+        border: none;
+        outline: 0;
+        border-bottom: 1px solid #ccc;
+        padding: 2px 5px 3px 5px;
+        margin: 2px;
+    }
+
+        select.list-dt:focus {
+            border-bottom: 2px solid #000263;
+        }
+
+    /*The background card*/
+    .card {
+        z-index: 0;
+        border: none;
+        border-radius: 0.5rem;
+        position: relative;
+    }
+
+    /*FieldSet headings*/
+    .fs-title {
+        font-size: 20px;
+        color: #2C3E50;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    /*progressbar*/
+    #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        color: lightgrey;
+    }
+
+        #progressbar .active {
+            color: #000000;
+        }
+
+        #progressbar li {
+            list-style-type: none;
+            font-size: 12px;
+            width: 25%;
+            float: left;
+            position: relative;
+        }
+
+        /*Icons in the ProgressBar*/
+        #progressbar #account:before {
+            font-family: fa-regular-400;
+            content: "\f27a";
+        }
+
+        #progressbar #personal:before {
+            font-family: fa-regular-400;
+            content: "\f007";
+        }
+
+        #progressbar #payment:before {
+            font-family: fa-regular-400;
+            content: "\f09d";
+        }
+
+        #progressbar #confirm:before {
+            font-family: fa-regular-400;
+            content: "\f1d8";
+        }
+
+        /*ProgressBar before any progress*/
+        #progressbar li:before {
+            width: 50px;
+            height: 50px;
+            line-height: 45px;
+            display: block;
+            font-size: 18px;
+            color: #ffffff;
+            background: lightgray;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            padding: 2px;
+        }
+
+        /*ProgressBar connectors*/
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: lightgray;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            z-index: -1;
+        }
+
+        /*Color number of the step and the connector before it*/
+        #progressbar li.active:before, #progressbar li.active:after {
+            background: #000263;
+        }
+
+    /*Imaged Radio Buttons*/
+    .radio-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .radio {
+        display: inline-block;
+        width: 204;
+        height: 104;
+        border-radius: 0;
+        background: lightblue;
+        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        cursor: pointer;
+        margin: 8px 2px;
+    }
+
+        .radio:hover {
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .radio.selected {
+            box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+    /*Fit image in bootstrap div*/
+    .fit-image {
+        width: 100%;
+        object-fit: cover;
+    }
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+
+    .product-image > a img {
+        width: 100%;
+        height: 112px;
+        object-fit: fill;
+    }
+
+
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            top: 33%;
+        }
+    }
+
+    a, button {
+        color: inherit;
+        display: inline-block;
+        line-height: 18px;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 12px;
+    }
+</style>
+
+
+@if (ViewBag.Banner.Count > 0)
+{
+    <div class="breadcrumb-area section-ptb" style="background: url(@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@ViewBag.Banner[0].Image) repeat scroll 0 0;background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].MainHeading </h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].ArabicMainHeading </h2>
+                    }
+                    <!-- breadcrumb-list start -->
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00ch0">Checkout</li>
+                    </ul>
+                    <!-- breadcrumb-list end -->
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title" data-translate="00ch0">Checkout</h2>
+                    <!-- breadcrumb-list start -->
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00ch0">Checkout</li>
+                    </ul>
+                    <!-- breadcrumb-list end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+}
+
+
+
+<!-- MultiStep Form -->
+<div class="container section-pt-30" id="grad1">
+
+    <div class="row">
+        <div class="col">
+            <div class="coupon-area">
+                @*coupon-accordion start*@
+                <div class="coupon-accordion">
+                    <h3><span data-translate="000co17">Have a coupon?</span> <span class="coupon" id="showcoupon" data-translate="00ch1">Click here to enter your code</span></h3>
+                    <div class="coupon-content" id="checkout-coupon">
+                        <div class="coupon-info">
+                            <form action="#">
+                                <p class="checkout-coupon">
+                                    <input id="coupon" type="text" placeholder="Coupon code">
+                                    <button onclick="CouponDiscount(); return false;" type="submit" class="btn btn-small btn-default ml-2 rounded-0" name="apply_coupon" value="Apply coupon" data-translate="00ch2">Apply coupon</button>
+                                <p id="CouponResponse"></p>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-0">
+        <div class=" col-lg-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form id="msform">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="account"><strong>Message</strong></li>
+                                <li id="personal"><strong>Address</strong></li>
+                                <li id="payment"><strong>Delivery</strong></li>
+                                <li id="confirm"><strong>Payment</strong></li>
+                            </ul>
+                            <!-- fieldsets -->
+                            <fieldset>
+
+                                <div class="form-card">
+                                    <h2 class="fs-title">Card Message</h2>
+                                    <input type="text" name="to" id="firstValue" placeholder="To" />
+                                    <textarea name="umessage" id="secondValue" placeholder="Message" rows="4"></textarea>
+                                    <input type="text" name="from" id="thirdValue" placeholder="From" />
+
+                                    <h4 class="fs-title" style="font-size:18px;">Share your feelings</h4>
+
+                                    <div class="form-group has-search ">
+
+                                        <div class="form-group has-search">
+                                            <span class="ion-link form-control-feedback" style="font-size:30px;"></span>
+                                            <input type="text" class="form-control" id="qr" placeholder="Paste a link to a song or video">
+                                        </div>
+
+                                        <div class="text-right">
+                                            <button type="button" data-toggle="modal" data-target="#theModal" style="border:none;background:none;">Preview Card Message</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*<input type="button" name="next" class="action-button" onclick="gotoLogin()" value="Continue to Login" />*@
+                                <input type="button" name="next" class="next action-button" onclick="LoginModal();" value="Continue to Address" />
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card" id="jumptoaddress">
+                                    <h2 class="fs-title">Address</h2>
+                                    <div class="">
+                                        <div class="row">
+
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co4">Recipient Name *</span></label>
+                                                <input id="CustomerName" class="form-control" placeholder="Name" type="text" name="CustomerName" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co5">Recipient Contact *</span></label>
+
+                                                <input id="ContactNo" class="form-control" placeholder="Contact no." type="text" name="ContactNo" required>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co1">Sender Name *</span></label>
+                                                <input id="SenderName" value="@Session["CustomerName"]" class="form-control" placeholder="Name" type="text" name="SenderName" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span>Sender Email </span></label>
+                                                <input id="SenderEmail" value="@Session["CustomerEmail"]" class="form-control" placeholder="Email Address" type="email" name="SenderEmail" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co3">Sender Contact *</span></label>
+                                                <input id="SenderContact" value="@Session["CustomerContactNo"]" class="form-control" placeholder="Contact no." type="text" name="SenderContact" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span class="">Recipient Address </span></label>
+                                                <input id="Address" class="form-control" type="text" placeholder="House, Street, unit etc." name="Address" required>
+                                            </div>
+                                            <div style="display:none">
+                                                <span id="longi"></span> /
+                                                <span id="lati"></span>
+                                            </div>
+                                            <div class="form-group col-md-12">
+
+                                                @*<input id="longitude" class="form-control" type="text" placeholder="25.728352 etc." name="longitude" required>*@
+                                                <input class="form-control" type="text" id="search_input" placeholder="Search for a place" name="SearchForLocation" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="form-group col-md-12">
+                                            <div id="information" style="display:none"></div>
+                                            <div id="map-canvas" width="100%"></div>
+                                        </div>
+                                        <div class="form-check form-check-inline col-md-12" style="padding-top:20px;">
+                                            <input class="form-check-input col-md-3" name="flexCheckChecked" type="checkbox" id="flexCheckChecked" style=" width: 50px; margin: 0; ">
+                                            <label class="form-check-label col-md-9" for="chk_red"> I don't know the address, please contact the recipient</label>
+                                        </div>
+                                        <br />
+                                        <div class="form-check form-check-inline col-md-12">
+                                            <input class="form-check-input chkboxidentity col-md-3" name="IsIdentitySecret" type="checkbox" id="IsIdentitySecret" style=" width: 50px; margin: 0; ">
+                                            <label class="form-check-label col-md-9" for="IsIdentitySecret">
+                                                Keep my identity secret
+                                            </label>
+                                        </div>
+
+                                        <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="val-alert"></p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" id="NextStep" value="Next Step" />
+
+
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Delivery</h2>
+
+                                    <div class="">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co6">Delivery Date  *</span></label>
+                                                <div class="input-group mb-3">
+                                                    <input id="DeliveryDate" class="form-control bg-white" type="text" placeholder="mm-dd-yyyy" readonly name="Date" required>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span data-translate="000co7">Delivery Time *</span></label>
+                                                <select id="DeliveryTime" class="custom-select" required>
+                                                    <option value="">Choose Delivery Time...</option>
+                                                    <option>09:00 to 13:00</option>
+                                                    <option>09:00 to 17:00</option>
+                                                    <option>12:00 to 18:00</option>
+                                                    <option>15:00 to 22:00</option>
+                                                    <option>Anytime</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-6">
+                                                <label><span class="" data-translate="000co8">Country *</span></label>
+                                                <select id="Country" class="custom-select" required>
+                                                    <option value="">Select Country...</option>
+                                                    <option selected>Bahrain</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span class="" data-translate="000co9">City *</span></label>
+                                                <input id="City" class="form-control" type="text" placeholder="City Name" name="City" required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-6">
+                                                <label><span class="" data-translate="000co11">Place Type *</span></label>
+                                                <select id="PlaceType" class="custom-select" required>
+                                                    <option value="">Select Place Type...</option>
+                                                    <option>Office</option>
+                                                    <option>Hospital</option>
+                                                    <option>House</option>
+                                                    <option>Apartment</option>
+                                                    <option>Shop</option>
+                                                    <option>Outlet</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label><span class="">Nearest Place </span></label>
+                                                <input id="NearestPlace" class="form-control" type="text" placeholder="Park, Bank, Hotel etc." name="NearestPlace">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="next-alert"></p>
+
+
+
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="make_payment" class="next action-button" id="Confirm" value="Confirm" />
+
+
+
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+
+                                    <div class="form-group">
+
+
+                                        <div class="container w-100">
+                                            <h5 class="text-center m-0 mt-2" data-translate="00ch8">Payment Option</h5>
+                                            <div class="justify-content-center pb-50 pt-4 row">
+                                                <div class="btn-group d-flex px-2" role="group" aria-label="Basic example" id="Payment-btn">
+                                                    <button id="COD" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="COD">
+
+                                                        <img style="width:100px;" src="~/Content/assets/images/logo/cod.png" />
+                                                    </button>
+                                                    <button id="Credimax" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="Credimax">
+
+                                                        <img style="width:100px;" src="~/Content/assets/images/logo/credimax1.png" />
+                                                    </button>
+                                                    <button id="PayPal" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="PayPal">
+                                                        <img style="width:100px;" src="~/Content/assets/images/logo/tap-payment-logo.png" />
+                                                    </button>
+                                                    <button id="BenefitPay" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="BenefitPay">
+                                                        <img style="width:48px;" src="~/Content/assets/images/logo/benefitlogo.png" />
+                                                    </button>
+                                                </div>
+                                                <p class="mb-0 mt-30 text-danger px-3 text-center">Invoice will be sent only by email and recipient will not get a printed copy.</p>
+                                                <p id="Card-text-cs"></p>
+
+                                                <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="f-alert"></p>
+
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="order-button-payment">
+
+                                        <a href="javascript:;" id="checkout" class="btn-place-order"><span data-translate="000co14">Place Order</span></a>
+                                        <a href="javascript:;" id="paypal-button" class="btn-block border-0"><span></span></a>
+                                        <a class="btn-place-order" id="btn-load">
+                                            <span class="spinner-border spinner-border-sm"></span>
+                                            Loading..
+                                        </a>
+
+                                        <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="payment-alert"></p>
+                                        <p class="text-danger font-weight-bold" id="Text-Error"></p>
+                                        <p class="text-danger font-weight-bold text-center bg-category2 rounded  " id="paypal-validation"></p>
+                                    </div>
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+
+
+                <div class="col-lg-12 col-md-7 order-1 order-sm-1 order-md-2">
+
+                    <div class="your-order-wrapper">
+                        <h3 class="shoping-checkboxt-title pb-1 mb-3" data-translate="00ch11">Your Order</h3>
+
+                        <div class="your-order-wrap">
+
+                            <div class="your-order-table table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name font-weight-bold text-left" data-translate="00ch12">Product</th>
+                                            <th class="product-total font-weight-bold text-right" data-translate="00ch13">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="cart-products">
+                                    </tbody>
+                                    <tfoot>
+
+
+                                        <tr class="cart-subtotal">
+                                            <th data-translate="00ch4" class=" text-left">Cart Subtotal</th>
+                                            <td class=" text-right"><span class="amount semi-bold sub-total">BD00.00</span></td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th data-translate="00ch6" class=" text-left" id="coupon-text">Coupon Discount</th>
+                                            <td class="product-total text-right">
+                                                <span class="amount coupon-amount"> BD 0</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th data-translate="00ch5" class=" text-left">Delivery Charges</th>
+                                            <td class="product-total text-right">
+                                                <span class="amount shipping-amount"></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th class=" text-left"> <span data-translate="00ch9">Tax Percentage</span> <span id="taxper"></span></th>
+                                            <td class="product-total text-right">
+                                                <span class="amount Tax-amount"></span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th class=" text-left" data-translate="00ch7">Order Total</th>
+                                            <td class=" text-right">
+                                                <strong><span id="totalamount" class="amount "></span></strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input id="CouponID" type="hidden" value="0" />
+<input id="CouponCode" type="hidden" value="0" />
+<input id="CouponType" type="hidden" value="0" />
+<input id="GrandTotal" type="hidden" value="0" />
+
+
+
+
+<div class="porduct-area   d-sm-block ">
+    <div class="container w-100">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <div class="section-title text-center">
+                    <h2 class="text-default"><span class="font-weight-lighter" style="font-size:18px;">Add on something to make it extra special!</span></h2>
+                    <p style="font-size:15px;">Make your gift extra special with an addition from one of our brands.</p>
+                </div>
+
+                <div class="row product-active-lg-4 product-active">
+
+                    @foreach (var item in ViewBag.Featureditems)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single-product-wrap">
+                                <div class="product-image all-product-image card1 ">
+                                    @if (item.Image == "" || item.Image == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title"></a>
+                                    }
+                                    @if (item.HoveredImage == "" || item.HoveredImage == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title"></a>
+                                    }
+
+                                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="product-content">
+
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></h3>
+                                    }
+                                    else
+                                    {
+                                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></h3>
+                                    }
+                                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                    {
+                                        <div class="price-box">
+                                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.Price</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="price-box">
+                                            <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @item.Price</span>
+                                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.DiscountedPrice</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-md-12 text-center mt-50">
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade " style="z-index: 16000161 !important;" id="theModal">
+    <div class="modal-dialog  modal-sm modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content col-lg-5">
+            <div class="modal-header">
+                <h4 class="modal-title">Card Message</h4><br />
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-card text-center">
+                            <img src="~/Content/assets/images/logo/flowerLink.svg" alt="" width="110px"><br />
+                            <span id="first"></span>
+                            <br />
+                            <br />
+                            <span id="second"></span>
+                            <br />
+                            <br />
+                            <span id="third"></span>
+                            <br /> <br /> <br />
+
+                            <div class="text-center">
+                                <span id="qrcode" style="display:inline-block;"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer ">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " style="z-index: 16000161 !important;" id="myModal">
+    <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add on something to make it extra special!</h4><br />
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-header">
+                <p>Make your gift extra special with an addition from one of our brands.</p>
+
+            </div>
+
+            <div class="modal-body">
+
+                @Html.Action("UpSell", "Order")
+                @*@Html.Partial("~/Views/Order/_UpSellingModal.cshtml")*@
+                @*<div class="row product-active-lg-4 product-active">
+
+                        @foreach (var item in ViewBag.Featureditems)
+                        {
+                            <div class="col-lg-3">
+                                <div class="single-product-wrap">
+                                    <div class="product-image all-product-image card1 ">
+                                        @if (item.Image == "" || item.Image == null)
+                                        {
+                                            <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title" style="height:200px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title" style="height:200px;"></a>
+                                        }
+                                        @if (item.HoveredImage == "" || item.HoveredImage == null)
+                                        {
+                                            <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title" style="height:200px;"></a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title" style="height:200px;"></a>
+                                        }
+
+                                        @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                        {
+                                            <div class="product-action">
+                                                <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                                <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-action">
+                                                <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                                <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="product-content">
+
+                                        @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                        {
+                                            <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></h3>
+                                        }
+                                        else
+                                        {
+                                            <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></h3>
+                                        }
+                                        @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                        {
+                                            <div class="price-box">
+                                                <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.Price</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="price-box">
+                                                <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @item.Price</span>
+                                                <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.DiscountedPrice</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>*@
+            </div>
+
+            <div class="modal-footer ">
+                <input id="hdnItemKey" value="" type="hidden" />
+                <a href="#" class="btn  btn-small" data-dismiss="modal">No Thank you</a>
+                <button onclick="addgift(); GotoCartPage(); return false;" class="btn btn-default btn-small">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade " style="z-index: 16000161 !important;  backdrop-filter: blur(50px);" id="loginModal">
+    <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable-Login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login / Register</h4><br />
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            @*<div class="modal-header">
+                    <p>Login / Register</p>
+
+                </div>*@
+
+            <div class="modal-body">
+
+                <div class="main-content-wrap login-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                                <div class="login-register-wrapper">
+                                    <!-- login-register-tab-list start -->
+                                    <div class="login-register-tab-list nav">
+                                        <a class="active" data-toggle="tab" href="#lg1">
+                                            <h4 data-translate="00a2"> login </h4>
+                                        </a>
+                                        <a data-toggle="tab" href="#lg2">
+                                            <h4 data-translate="00a3"> register </h4>
+                                        </a>
+                                    </div>
+                                    <!-- login-register-tab-list end -->
+                                    <div class="tab-content">
+                                        <div id="lg1" class="tab-pane active">
+                                            <div class="login-form-container">
+                                                <div class="login-register-form">
+
+                                                    <form  class="needs-validation" novalidate name="myform">
+                                                        <div class="login-input-box">
+                                                            <div class="form-group">
+                                                                <input id="emaillogin" type="email" class="form-control mb-0" name="Email" placeholder=" Email " required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input id="passwordlogin" type="password" class="form-control mb-0" name="Password" placeholder="Password" required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="button-box d-flex flex-column">
+                                                            <div class="login-toggle-btn">
+                                                                <a href="#">@Session["LoginNote"]</a>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between">
+                                                                <a class="btn btn-default flex-shrink-1 login-btn px-3 py-2" id="login-btn"><span data-translate="00a2" onclick="login(); return false;">Login</span></a>
+                                                                @*<a href="@Url.Action("Checkout", "Order", new { id = 0 })" class="btn flex-shrink-0 login-btn p-2"><span data-translate="00a4">Continue as Guest</span></a>*@
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                    <input type="button" onclick="closeLoginModal();" class="btn flex-shrink-0 login-btn p-2" value="Continue as Guest" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="lg2" class="tab-pane">
+                                            <div class="login-form-container">
+                                                <div class="login-register-form">
+                                                    <form  class="needs-validation" novalidate name="myform">
+                                                        <div class="login-input-box">
+                                                            <div class="form-group">
+                                                                <input type="text" id="FirstName" name="FirstName" class="form-control mb-0" placeholder="First Name" required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" id="LastName" name="LastName" class="form-control mb-0" placeholder="Last Name" required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="Email" id="Email" placeholder="Email" class="form-control mb-0" type="email" required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" id="Password" name="Password" class="form-control mb-0" placeholder="Password" required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" value="" id="ContactNo" name="ContactNo" class="form-control mb-0" placeholder="Contact no." required>
+                                                                <div class="valid-feedback">Valid.</div>
+                                                                <div class="invalid-feedback">Invalid.</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="button-box">
+                                                            <a class="register-btn btn btn-default" ><span data-translate="00a3" onclick="Register(); return false;">Register</span></a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer ">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script src="~/Content/assets/js/QRCode.js"></script>
+    <script>
+
+        @*var value = '@Request.RequestContext.HttpContext.Session["CustomerEmail"]';
+        debugger
+        if (value.length>0) {
+                //$('.next').click();
+                $('.next').trigger('click');
+        }
+        else {
+
+        }*@
+
+        function GotoCartPage() {
+            window.location.href = '/order/cart/';
+        }
+
+
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('#myModal').modal({ show: true });
+        });
+
+        function LoginModal() {
+
+            $('#loginModal').modal('show');
+        }
+        function closeLoginModal() {
+            debugger
+            $('#loginModal').modal('hide');
+        }
+    </script>
+    <script type="text/JavaScript">
+
+        $(document).ready(function () {
+            localStorage.removeItem("_setting");
+            localStorage.setItem("_setting", "[]");
+            setting();
+
+            $("#paypal-button").hide();
+            $("#btn-load").hide();
+            var check = getCartLS();
+            if (check.length > 0) {
+                $("#checkout").show();
+            }
+            else {
+                $("#checkout").hide();
+                $("#Text-Error").html("Kindly add items in your cart then place order");
+            }
+
+
+        });
+
+        function getbuttonvalue(val) {
+            if (val.value == "PayPal") {
+                $("#checkout").show();
+
+            }
+            else {
+                $('#paypal-validation').html("");
+                $("#paypal-button").hide();
+                $("#checkout").show();
+            }
+        }
+
+
+
+        function setting() {
+            //get settings
+            var chkLSsettings = localStorage.getItem("_setting");
+            if (chkLSsettings != null) {
+                $.ajax({
+                    type: "GET",
+                    url: '/Home/GetSetting',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+                    success: function (data) {
+                        var arrTemp = [];
+                        arrTemp = getsettingsLS();
+                        arrTemp.push({ DeliveryCharges: data.DeliveryCharges, ServiceCharges: data.ServiceCharges, OtherCharges: data.OtherCharges, TaxPercentage: data.TaxPercentage, MinimumOrderValue: data.MinimumOrderValue, COD: data.COD, Credimax: data.Credimax, PayPal: data.PayPal, BenefitPay: data.BenefitPay, TopHeaderText: data.TopHeaderText });
+                        if (data.COD != 1) {
+                            $('#COD').addClass('d-none');
+                        }
+                        if (data.Credimax != 1) {
+                            $('#Credimax').addClass('d-none');
+                        }
+                        if (data.PayPal != 1) {
+                            $('#PayPal').addClass('d-none');
+                        }
+                        if (data.BenefitPay != 1) {
+                            $('#BenefitPay').addClass('d-none');
+                        }
+                        setsettings(arrTemp);
+                        cartdata(0);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        //alert(xhr, textStatus, errorThrown);
+                    }
+                });
+            }
+        };
+        function setsettings(arr) {
+            var settings = localStorage.getItem("_setting");
+            if (settings != null) {
+                localStorage.setItem("_setting", JSON.stringify(arr));
+            }
+        };
+        function getsettingsLS() {
+            var settings = localStorage.getItem("_setting");
+            if (settings != null && settings != "")
+                return JSON.parse(settings);
+            else
+                return JSON.parse("[]");
+        };
+
+        var currency = localStorage.getItem("currency");
+
+
+        $("#NextStep").click(function () {
+
+            if ($('#SenderName').val() == "" && $('#CustomerName').val() == "" && $('#ContactNo').val() == ""  ) {
+                $('#val-alert').html('Input Required Fields');
+                $('#next-alert').html('Input Required Fields in previous step');
+
+            }
+            else {
+                $('#val-alert').html('Input Required Fields').hide();
+                $('#next-alert').html('Input Required Fields in previous step').hide();
+            }
+
+        });
+
+        $("#Confirm").click(function () {
+
+            //if ($('#DeliveryDate').val() == "" && $('#DeliveryTime').val() == "" && $('#Country').val() == "" && $('#City').val() == "" && $('#PlaceType').val() == "" && $('#NearestPlace').val() == "") {
+            if ($('#DeliveryDate').val() == "") {
+                $('#f-alert').html('Delivery Date is Required in previous step');
+            }
+
+           else if ($('#DeliveryTime').val() == "") {
+                $('#f-alert').html('Delivery Time is Required in previous step');
+            }
+
+           else if ($('#Country').val() == "") {
+                $('#f-alert').html('Country is Required in previous step');
+            }
+
+           else if ($('#City').val() == "") {
+                $('#f-alert').html('City is Required in previous step');
+            }
+
+              else  if ($('#PlaceType').val() == "") {
+                    $('#f-alert').html('Place Type is Required in previous step');
+                }
+
+            else {
+                $('#f-alert').css('display', 'none');
+
+            }
+
+        });
+
+
+
+        $("#checkout").click(function () {
+
+            if ($('#SenderName').val() != ""
+                && $('#SenderContact').val() != "" && $('#Country').val() != "" && $('#City').val() != "" && $('#ContactNo').val() != "" && $('#DeliveryDate').val() != "" && $('#DeliveryTime').val() != "" && $('#CustomerName').val() != ""
+               // && $('#Email').val() != ""
+            ) {
+                if ($(".payactive").val() == null) {
+                    $('#payment-alert').html('Kindly select payment option');
+                }
+                else {
+                    $('#payment-alert').html('');
+                    checkout();
+                }
+            }
+            else {
+            }
+
+        });
+
+
+        //coupon working
+        function CouponDiscount() {
+            var coupon = $("#coupon").val();
+            $.ajax({
+                type: "Get",
+                url: '/Order/Coupon?coupon=' + coupon,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data.data != null) {
+                        $("#CouponResponse").removeClass();
+                        $("#CouponResponse").html('Coupon Applied').addClass("text-success");
+                        if (data.data.Type == 'Amount') {
+                            //$(".coupon-amount").html(currency + ' ' + data.data.Amount.toFixed(2));
+                            $("#coupon-text").html('Coupon Discount');
+                        }
+                        else {
+                            //$(".coupon-amount").html(currency + ' ' + data.data.Amount.toFixed(2));
+                            $("#coupon-text").html('Discount Percentage (' + data.data.Amount.toFixed(0) + '%)');
+                        }
+                        $('#CouponID').val(data.data.CouponID);
+                        $('#CouponCode').val(data.data.CouponCode);
+                        $('#CouponType').val(data.data.Type)
+                        CouponDis(data.data.CouponID);
+                        cartdata(data.data.Amount);
+                    }
+                    else {
+                        $("#CouponResponse").removeClass();
+                        $("#CouponResponse").html('Invalid Coupon').addClass("text-danger");
+                        $(".coupon-amount").html(currency +' '+ 0);
+                        CouponDis(0);
+                        cartdata(0);
+                    }
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //
+                }
+            });
+        }
+        function CouponDis(ID) {
+            return ID;
+        }
+        //Order working
+        function checkout() {
+
+            $("#checkout").hide();
+            $("#btn-load").show();
+
+
+            //=============================== Date For Order# ===================
+            var TodayDate  = new Date();
+            var dd = String(TodayDate.getDate()).padStart(2, '0');
+            var mm = String(TodayDate.getMonth() + 1).padStart(2, '0');
+            var yyyy = (new Date().getFullYear() + '').slice(-2);
+            TodayDate = mm + dd + yyyy;
+
+            //=============================== Current Date ======================
+            var m = new Date();
+            var dateString =
+                m.getUTCFullYear() + "/" +
+                ("0" + (m.getUTCMonth() + 1)).slice(-2) + "/" +
+                ("0" + m.getUTCDate()).slice(-2) + " " +
+                ("0" + m.getUTCHours()).slice(-2) + ":" +
+                ("0" + m.getUTCMinutes()).slice(-2) + ":" +
+                ("0" + m.getUTCSeconds()).slice(-2);
+
+            //=============================== Order Details =====================
+
+            var shippingcharges = 0;
+            var total = 0;
+            var chkLScart = localStorage.getItem("_cartitems");
+            var data = JSON.parse(chkLScart);
+
+            var chkLSgift = localStorage.getItem("_giftitems");
+            var dataGift = JSON.parse(chkLSgift);
+            var totalPrice = 0;
+            var totalQty = 0;
+
+
+            for (var i = 0; i < data.length; i++) {
+                totalQty += Number(data[i].Qty);
+                totalPrice += data[i].Qty * data[i].UPrice;
+            }
+
+            if (dataGift.length > 0) {
+                for (var j = 0; j < dataGift.length; j++) {
+                    totalPrice += dataGift[j].DisplayPrice;
+                }
+            }
+            @*if (totalPrice <= 200) {
+                shippingcharges = 0;//change here
+            }
+            else {
+                shippingcharges = 0;
+            }*@
+            var LSsettings = JSON.parse(localStorage.getItem("_setting"));
+            var settings = LSsettings[0];
+
+            //total = settings.DeliveryCharges + settings.TaxPercentage +totalPrice;
+            var CouponDisount = parseFloat($(".coupon-amount").text().replace("BD", ""));
+            //total = (total - CouponDisount).toFixed(2);
+
+            //=============================== Order Master =====================
+            //total = ((totalPrice - CouponDisount) + (settings.DeliveryCharges + (totalPrice *  (settings.TaxPercentage / 100)))).toFixed(2);
+            Taxamount = (totalPrice * (settings.TaxPercentage / 100)).toFixed(2);
+            total = (((totalPrice + (totalPrice * (settings.TaxPercentage / 100))) - CouponDisount) + settings.DeliveryCharges).toFixed(2);
+
+            var Order = new Object();
+            Order.OrderNo = 'FL-' + TodayDate + '-' +@Convert.ToInt32(Session["CustomerID"])+'-' + Math.floor((Math.random() * 1000) + 1);
+            Order.CustomerID = @Convert.ToInt32(Session["CustomerID"]);
+            Order.AmountTotal = totalPrice;
+            Order.GrandTotal = total;
+            Order.Tax = Taxamount;
+            Order.DeliveryAmount = settings.DeliveryCharges;
+            Order.DiscountAmount = CouponDisount;
+            Order.TotalItems = totalQty;
+            Order.StatusID = 1;
+            Order.OrderDate = dateString;
+            Order.LastUpdatedDate = dateString;
+            Order.LastUpdatedBy = 0;
+            Order.CouponID = $('#CouponID').val();
+
+            //==========================  Order Card Info ========================
+            Order.Tomsg = $('#firstValue').val();
+            Order.Message = $('#secondValue').val();
+            Order.Frommsg = $('#thirdValue').val();
+            Order.Link = $('#qr').val();
+            Order.ContactNo = $('#ContactNo').val();
+
+            //========================== Customer Order Info ========================
+            Order.Address = $('#Address').val();
+            Order.NearestPlace = $('#NearestPlace').val();
+            Order.Country = $('#Country').val();
+            Order.City = $('#City').val();
+            Order.ContactNo = $('#ContactNo').val();
+            Order.DeliveryDate = $('#DeliveryDate').val();
+            Order.SelectedTime = $('#DeliveryTime').val();
+            Order.CustomerID = @Convert.ToInt32(Session["CustomerID"]);
+            Order.CustomerName = $('#CustomerName').val();
+            Order.Latitude = $('#lati').text();
+            Order.Longitude = $('#longi').text();
+            Order.IsIdentitySecret = $("#IsIdentitySecret").is(":checked") ? 1 : 2;
+            Order.IsUnknownAddress = $("#flexCheckChecked").is(":checked") ? 1 : 2;
+            Order.PlaceType = $('#PlaceType').val();
+            //Order.Email = $('#Email').val();
+            Order.Email = 'Null';
+            Order.OrderDetailString = JSON.stringify(data);
+            Order.OrderGiftsString = JSON.stringify(dataGift);
+            Order.CardNotes = $('#CardNotes').val();
+            Order.SenderName = $('#SenderName').val();
+            Order.SenderEmail = $('#SenderEmail').val();
+            Order.SenderContact = $('#SenderContact').val();
+            Order.CouponCode = $('#CouponCode').val();
+
+            var PaymentType = $(".payactive").val();
+            if (PaymentType == "Credimax") {
+                Order.PaymentMethodID = 2
+            }
+            else if (PaymentType == "PayPal") {
+                Order.PaymentMethodID = 3
+            }
+            else if (PaymentType == "BenefitPay") {
+                Order.PaymentMethodID = 4
+            }
+            else {
+                Order.PaymentMethodID = 1
+            }
+
+            // =========================================================================
+
+
+            var Masterorder = JSON.stringify({ 'data': Order });
+
+            $.ajax({
+                type: "POST",
+                url: '/Order/PunchOrder',
+                data: Masterorder,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data.data == "PayPal") {
+
+                        localStorage.clear();
+                        if (data.success) {
+                            window.location.href = data.url;
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    }
+                    else if (data.data.OrderNo == null && data.data != "BenefitPay") {
+                        localStorage.clear();
+                        window.location.href = '/Order/OrderComplete?OrderID=' + data.data + '&OrderNo=' + Order.OrderNo;
+                    }
+                    else if (data.data == "BenefitPay")
+                    {
+
+                        localStorage.clear();
+                        window.location.href = '/Order/BenefitPay?OrderNo=' + Order.OrderNo + '&OrderID=' + data.OrderID + '&GrandTotal=' + Order.GrandTotal;
+                    }
+                    else {
+                        getCardDetails(data.data.sessionID, data.data.GrandTotal, data.data.OrderNo, data.data.Description);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+        };
+
+        function getCardDetails(sessionID, amount, OrderID, description) {
+
+            Checkout.configure({
+                merchant: 'E10561950',
+                order: {
+                    amount: function () {
+                        return amount; // Transaction Amount
+                    },
+                    currency: 'BHD',
+                    description: ''+description+'',
+                    id: ''+OrderID+'' //Pass new order id
+                },
+                session: {
+                    id: sessionID // PASS the session id generated in the api  --> -->
+                },
+                interaction: {
+                    operation: 'PURCHASE', // set this field to 'PURCHASE' for Hosted Checkout to perform a Pay Operation when LIVE. -->
+                    merchant: {
+                        name: 'Flowerlink',
+                        logo: 'https://flowerlink.net/images/logo.png'
+                    },
+                    displayControl: {
+                        billingAddress: 'HIDE'
+                    },
+                }
+            });
+            Checkout.showPaymentPage();
+        };
+        function getgiftLS() {
+            var getgiftItem = localStorage.getItem("_giftitems");
+            if (getgiftItem != null && getgiftItem != "")
+                return JSON.parse(getgiftItem);
+            else
+                return JSON.parse("[]");
+        }
+        function cartdata(coupon) {
+            var gifts = getgiftLS();
+            var checkLSsetting = localStorage.getItem("_setting");
+            var LSsettings = JSON.parse(localStorage.getItem("_setting"));
+            var settings = LSsettings[0];
+
+            var shippingcharges = 0;
+            var total = 0;
+            var chkLScart = localStorage.getItem("_cartitems");
+            var data = JSON.parse(chkLScart);
+            var html = '';
+            var totalPrice = 0;
+            var totalQty = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                var giftPrice = 0;
+                totalQty += Number(data[i].Qty);
+                totalPrice += data[i].Qty * data[i].UPrice;
+                html += '<tr class="cart_item" >'
+                    + '<td class="product-name  text-left">' + data[i].Title + '<strong class="product-quantity">' + ' × ' + data[i].Qty + '</strong>'
+                if (gifts.length > 0) {
+                    var _dataGiftFilter = gifts.filter(function (obj) {
+                        return (obj.ItemKey === data[i].Key);
+                    });
+
+                    for (var j = 0; j < _dataGiftFilter.length; j++) {
+                        totalPrice += _dataGiftFilter[j].DisplayPrice;
+                        giftPrice += _dataGiftFilter[j].DisplayPrice;
+                        html +='<p class="mb-0 text-default small lh-16 ">' +'- '+ _dataGiftFilter[j].Title + '</p>'
+                    }
+                }
+
+                html += '</td>'
+                    + '<td class="product-total text-right">'
+                    + '<span class="amount">' + currency + ' ' + ((data[i].Qty * data[i].UPrice) + giftPrice).toFixed(2) + '</span>'
+                    + '</td>'
+                    + '</tr>'
+            }
+            $(".cart-products").html(html)
+
+            @*if (totalPrice <= 0) {//change max amount delivery amount
+                if (data.length > 0) {
+                    shippingcharges = 0;//change value for delivery charges
+                    $(".shipping-amount").html(currency + ' ' + settings.DeliveryCharges.toFixed(2));
+                }
+                else {
+                    $(".shipping-amount").html(current + ' ' + settings.DeliveryCharges.toFixed(2));
+                }
+            }
+            else {
+                shippingcharges = 0;
+                $(".shipping-amount").html(settings.DeliveryCharges.toFixed(2));
+            }*@
+            if (data.length > 0) {
+                $(".sub-total").html(currency + ' ' + (totalPrice).toFixed(2));
+
+                $(".shipping-amount").html(currency + ' ' + settings.DeliveryCharges.toFixed(2));
+
+                Taxamount = (totalPrice * (settings.TaxPercentage / 100)).toFixed(2);
+                $('.Tax-amount').html(currency + ' ' + Taxamount);
+                $('#taxper').html(' (' + settings.TaxPercentage + '%)');
+                if ($('#CouponType').val() == 'Amount') {
+                    total = (((totalPrice + (totalPrice * (settings.TaxPercentage / 100))) - coupon) + settings.DeliveryCharges).toFixed(2);
+                    $(".coupon-amount").html(currency + ' ' + coupon.toFixed(2));
+                }
+                else {
+                    total = (((totalPrice + (totalPrice * (settings.TaxPercentage / 100))) - (totalPrice * (coupon / 100))) + settings.DeliveryCharges).toFixed(2);
+                    $(".coupon-amount").html(currency + ' ' + (totalPrice * (coupon / 100)).toFixed(2));
+                }
+
+                $("#totalamount").html(currency + ' ' + total);
+                fetch(`https://api.exchangerate-api.com/v4/latest/BHD`)
+                    .then(res => res.json())
+                    .then(res => {
+                        const new_rate = res.rates["USD"];
+                        $('#GrandTotal').val((total * new_rate).toFixed(2));
+                    });
+            }
+            else {
+                $(".sub-total").html("");
+                $('.Tax-amount').html("");
+                $(".shipping-amount").html("");
+                $("#totalamount").html("");
+            }
+
+
+            if (total < settings.MinimumOrderValue && total > 0) {
+                $("#checkout").hide();
+                $("#Text-Error").html("Minimum Order Value is BD " + settings.MinimumOrderValue.toFixed(2) + ". Please get some more product to proceed your order.");
+            }
+            else if (total > settings.MinimumOrderValue) {
+                $("#checkout").show();
+            }
+        };
+        var header = document.getElementById("Payment-btn");
+        var btns = header.getElementsByClassName("btn");
+
+        $('#Payment-btn').on('click', '.btn-pay', function () {
+            $(this).addClass('payactive').siblings().removeClass('payactive');
+            $('#payment-alert').html('');
+        });
+
+        @*for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("payactive");
+                current[0].className = current[0].className.replace(" payactive", "");
+                this.className += " payactive";
+            });
+        }*@
+    </script>
+    <script type="text/javascript">
+
+        function login() {
+            //get settings
+            var Order = new Object();
+            Order.Email = $('#emaillogin').val();
+            Order.passwordlogin = $('#passwordlogin').val();
+            var Masterorder = JSON.stringify({ 'data': Order });
+
+           
+                $.ajax({
+                    type: "POST",
+                    url: '/Order/LoginRegister',
+                    data: Masterorder,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("success 1")
+                        //var arrTemp = [];
+                        //arrTemp = getsettingsLS();
+                        //arrTemp.push({ DeliveryCharges: data.DeliveryCharges, ServiceCharges: data.ServiceCharges, OtherCharges: data.OtherCharges, TaxPercentage: data.TaxPercentage, MinimumOrderValue: data.MinimumOrderValue, COD: data.COD, Credimax: data.Credimax, PayPal: data.PayPal, BenefitPay: data.BenefitPay, TopHeaderText: data.TopHeaderText });
+                        //if (data.COD != 1) {
+                        //    $('#COD').addClass('d-none');
+                        //}
+                        //if (data.Credimax != 1) {
+                        //    $('#Credimax').addClass('d-none');
+                        //}
+                        //if (data.PayPal != 1) {
+                        //    $('#PayPal').addClass('d-none');
+                        //}
+                        //if (data.BenefitPay != 1) {
+                        //    $('#BenefitPay').addClass('d-none');
+                        //}
+                        //setsettings(arrTemp);
+                        //cartdata(0);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        //alert(xhr, textStatus, errorThrown);
+                    }
+                });
+           
+        };
+        function Register() {
+            //get settings
+            var Order = new Object();
+            Order.Email = $('#Email').val();
+            Order.FirstName = $('#FirstName').val();
+            Order.LastName = $('#LastName').val();
+            Order.Password = $('#Password').val();
+            Order.ContactNo = $('#ContactNo').val();
+            var Masterorder = JSON.stringify({ 'data': Order });
+
+          
+                $.ajax({
+                    type: "POST",
+                    url: '/Order/LoginRegister',
+                    data: Masterorder,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("success 2")
+
+                        //var arrTemp = [];
+                        //arrTemp = getsettingsLS();
+                        //arrTemp.push({ DeliveryCharges: data.DeliveryCharges, ServiceCharges: data.ServiceCharges, OtherCharges: data.OtherCharges, TaxPercentage: data.TaxPercentage, MinimumOrderValue: data.MinimumOrderValue, COD: data.COD, Credimax: data.Credimax, PayPal: data.PayPal, BenefitPay: data.BenefitPay, TopHeaderText: data.TopHeaderText });
+                        //if (data.COD != 1) {
+                        //    $('#COD').addClass('d-none');
+                        //}
+                        //if (data.Credimax != 1) {
+                        //    $('#Credimax').addClass('d-none');
+                        //}
+                        //if (data.PayPal != 1) {
+                        //    $('#PayPal').addClass('d-none');
+                        //}
+                        //if (data.BenefitPay != 1) {
+                        //    $('#BenefitPay').addClass('d-none');
+                        //}
+                        //setsettings(arrTemp);
+                        //cartdata(0);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        //alert(xhr, textStatus, errorThrown);
+                    }
+                });
+      
+        };
+    </script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="https://credimax.gateway.mastercard.com/checkout/version/54/checkout.js" data-error="errorCallback" data-cancel="cancelCallback" data-afterRedirect="restorePageState"></script>
+    <script type="text/javascript">
+        function errorCallback(error) {
+            console.log(JSON.stringify(error));
+        }
+        function cancelCallback() {
+            console.log('Payment cancelled');
+        }
+        function restorePageState(data) {
+            //set page state from data object
+            console.log(data);
+
+        }
+
+    </script>
+    <script src="~/Content/assets/js/plugins/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/assets/js/plugins/bootstrap-datepicker.js"></script>
+    <script>
+        $("#DeliveryDate").on("change", function () {
+            if ($(this).val() != null || $(this).val() != '') {
+                $("#DeliveryDate").css('border','1px solid green');
+            }
+
+        });
+        $(document).ready(function () {
+            $("#DeliveryDate").css('border', '1px solid red');
+            var dt = new Date();
+            var time = dt.getHours();
+
+            if (time > 19) {
+                $('#DeliveryDate').datepicker({
+                startDate: '@DateTime.Today.AddDays(1).ToString("MM/dd/yyyy").ToString()',
+                endDate: '@DateTime.Today.AddDays(40).ToString("MM/dd/yyyy").ToString()',
+                autoclose: true,
+                toggleActive: true
+                });
+            }
+            else {
+                $('#DeliveryDate').datepicker({
+                startDate: '@DateTime.Today.AddDays(0).ToString("MM/dd/yyyy").ToString()',
+                endDate: '@DateTime.Today.AddDays(40).ToString("MM/dd/yyyy").ToString()',
+                autoclose: true,
+                todayHighlight: true,
+                toggleActive: true
+                });
+            }
+
+        });
+
+    </script>
+    <script>
+        paypal.Button.render({
+            // Configure environment
+            env: 'production',
+            client:
+            {
+                production: 'AbmnKAfeFJ_SKIXJKGM83l5tcE2fmEvpy8C0eBMA4h_GHjAXY01XsGW4CR_tc9AYjFWvq0x7AZ1mRyTC' //Enter your live client ID here
+            },
+            // Customize button (optional)
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'silver',
+                shape: 'rect',
+                size: 'responsive',
+                label: '',
+            },
+            // Called when page displays
+            validate: function (actions) {
+                console.log("validate called");
+                actions.disable(); // Allow for validation in onClick()
+                paypalActions = actions; // Save for later enable()/disable() calls
+            },
+            onClick: function () {
+
+                // Issue: fix to continue if valid, suppress popup if invalid
+                if ($('#SenderName').val() != "" && $('#SenderContact').val() != "" && $('#Country').val() != "" && $('#City').val() != "" && $('#ContactNo').val() != "" && $('#DeliveryDate').val() != "" && $('#DeliveryTime').val() != "" && $('#CustomerName').val() != "" && $('#Email').val() != "" && $('textarea#CardNotes').val() != "" || $('#NearestPlace').val() != "") {
+                    $('#paypal-validation').html("");
+                    paypalActions.enable();
+                    // TODO: Simulate click of PayPal button to display popup
+                } else {
+                    $('#paypal-validation').html("Please fill all required fields");
+                    paypalActions.disable(); // Too late
+                }
+            },
+
+            // Enable Pay Now checkout flow (optional)
+            commit: true,
+
+            // Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: $('#GrandTotal').val(),
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            // Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    // Show a success page to the buyer
+                    window.alert('Thank you for your purchase!');
+                    checkout();
+                });
+            },
+            onCancel: function (data, actions) {
+                location.reload();
+                //checkout();
+            },
+            onError: function (err) {
+
+            }
+        }, '#paypal-button');
+
+
+        //$(document).ready(function () {
+        debugger
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+
+        $(".next").click(function () {
+            debugger
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+
+        $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
+            });
+        });
+
+        $('.radio-group .radio').click(function () {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+
+        //});
+
+    </script>
+    <script>
+
+
+        $(function () {
+            $("button").on("click", function () {
+                var firstValue = $("#firstValue").val();
+                var secondValue = $("#secondValue").val();
+                var thirdValue = $("#thirdValue").val();
+                $("#first").text(firstValue);
+                $("#second").text(secondValue);
+                $("#third").text(thirdValue);
+                open();
+            });
+        });
+
+        function open() {
+            $('#qrcode').empty();
+
+            const qrLink = document.getElementById('qr').value;
+
+            const qrcode = new QRCode(document.getElementById('qrcode'), {
+
+                text: qrLink,
+                width: 128,
+                height: 128,
+                colorDark: '#000',
+                colorLight: '#fff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+
+
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS9WlGPFESaHNuuoWkaQfvKpi3A0N9crc&libraries=places&v=weekly"></script>
+    <script>
+        // if HTML DOM Element that contains the map is found...
+        if (document.getElementById('map-canvas')) {
+            var content;
+            var latitude = 52.525595;
+            var longitude = 13.393085;
+            var map;
+            var marker;
+            navigator.geolocation.getCurrentPosition(loadMap);
+
+            function loadMap(location) {
+                if (location.coords) {
+                    latitude = location.coords.latitude;
+                    longitude = location.coords.longitude;
+                }
+
+                // Coordinates to center the map
+                var myLatlng = new google.maps.LatLng(latitude, longitude);
+
+                // Other options for the map, pretty much selfexplanatory
+                var mapOptions = {
+                    zoom: 14,
+                    center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                // Attach a map to the DOM Element, with the defined settings
+                map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                content = document.getElementById('information');
+                google.maps.event.addListener(map, 'click', function (e) {
+                    placeMarker(e.latLng);
+                });
+
+                var input = document.getElementById('search_input');
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                var searchBox = new google.maps.places.SearchBox(input);
+
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                    var places = searchBox.getPlaces();
+                    placeMarker(places[0].geometry.location);
+                });
+
+                marker = new google.maps.Marker({
+                    map: map
+                });
+            }
+        }
+        function placeMarker(location) {
+            marker.setPosition(location);
+            //map.setCenter(location)
+            content.innerHTML = "Lat: " + location.lat() + " / Long: " + location.lng();
+            document.getElementById("lati").innerHTML = location.lat();
+            document.getElementById("longi").innerHTML = location.lng();
+            google.maps.event.addListener(marker, 'click', function (e) {
+                new google.maps.InfoWindow({
+                    content: "Lat: " + location.lat() + " / Long: " + location.lng()
+                }).open(map, marker);
+            });
+        }
+    </script>
+    <script>
+        $(function () {
+            $("#flexCheckChecked").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#map-canvas").hide();
+                    $("#information").hide();
+                } else {
+                    $("#map-canvas").show();
+                    $("#information").show();
+                }
+            });
+        });
+    </script>
+    <script>
+        function gotoLogin() {
+            window.location.href = '/account/Login_Register/';
+        }
+    </script>
+}

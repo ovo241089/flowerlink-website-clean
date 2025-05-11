@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title - Flower Link</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/images/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/vendor/bootstrap.min.css">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/vendor/ionicons.min.css">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="~/Content/assets/css/plugins/animation.css">
+    <link rel="stylesheet" href="~/Content/assets/css/plugins/jqueryui.min.css">
+    <link href="~/Content/assets/css/plugins/flag-icon.min.css" rel="stylesheet" />
+
+    <!-- CSS-->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    <!-- jQuery JS -->
+    <script src="~/Content/assets/js/vendor/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var currLang = Cookies.get('lang');
+            if (currLang == null || currLang == "" || currLang == undefined) {
+
+                Cookies.set('lang', 'en', { expires: 365 });
+                $('#_lang').html('عربى');
+            }
+            if (currLang == "en") {
+                $('#_lang').html("عربى");
+                $("._arabic").css("direction", "ltr")
+                $("._arabic-text").css("text-align", "left")
+                $(".icon-media").css("left", "0")
+                $(".icon-title").css("padding-left", "43px")
+            }
+            else {
+                $('#_lang').html("English");
+                $("._arabic").css("direction", "rtl")
+                $("p, h1, h2, h3, h4, h5, h6, a,div").css("font-family", "GE_Dinar_One_Medium")
+                $("._arabic-text").css("text-align", "right")
+                $(".icon-media").css("right", "0")
+                $(".icon-title").css("padding-right", "43px")
+            }
+        });
+
+        function _lang() {
+            var currLang = Cookies.get('lang');
+            //var currLang = localStorage.getItem("_lang");
+            if (currLang == null || currLang == "") {
+                Cookies.set('lang', 'en', { expires: 365 });
+                $('#_lang').html('عربى');
+            }
+            if (currLang == "en") {
+                Cookies.set('lang', 'ar', { expires: 365 });
+                $('#_lang').html('English');
+                location.reload();
+            }
+            if (currLang == "ar") {
+                Cookies.set('lang', 'en', { expires: 365 });
+                $('#_lang').html('عربى');
+                location.reload();
+            }
+        }
+    </script>
+    <script src="~/Content/assets/js/custom.js"></script>
+
+
+</head>
+<body>
+    <header class="fl-header">
+
+        <!-- Header Top Start -->
+        <div class="header-top-area d-none d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header-top-inner">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="social-top">
+                                        <ul>
+                                            <li id="facebook" class=""><a href="https://www.facebook.com/flowerlinkbh" target="_blank"><i class="ion-social-facebook"></i></a></li>
+                                            <li id="instagram" class=""><a href="https://www.instagram.com/flowerlink/" target="_blank"><i class="ion-social-instagram-outline"></i></a></li>
+                                            <li id="twitter" class=""><a href=""><i class="ion-social-twitter-outline" target="_blank"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 align-self-center text-center">
+                                    @*<p class="m-0 small text-uppercase" data-translate="00l0" id="TopHeaderText"> FREE Delivery nationwide </p>*@
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <p class="m-0 small text-uppercase" data-translate="00l0" id="TopHeaderText"> FREE Delivery nationwide </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="m-0 small text-uppercase" data-translate="00l0"> FREE Delivery nationwide </p>
+                                    }
+                                </div>
+                                <div class="col-lg-3 align-self-center">
+                                    <div class="top-info-wrap text-right">
+                                        <ul class="p-0 top-info">
+                                            <li><i class="fa fa-icon-globe"></i><a onclick="_lang(); return false;" id="_lang" data-translate="0002">عربى</a></li>
+                                            @*<li>
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-lang btn-small border-0 dropdown-toggle" data-toggle="dropdown">Language</a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-us mr-1"></i>English</a>
+                                                            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-sa mr-1"></i>Arabic</a>
+                                                        </div>
+                                                    </div>
+                                             </li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Top End -->
+        <!-- haeader bottom Start -->
+        <div class="haeader-bottom-area nav-bg" id="Head">
+            <div class="container w-100">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-4 col-5">
+                        <div class="logo-area">
+                            <a href="~/home/index"><img class="main-logo" src="~/Content/assets/images/logo/flowerLink.svg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-none d-lg-block">
+                        <div class="main-menu-area text-center">
+                            @Html.Action("Header", "Shared")
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-8 col-7">
+                        <div class="right-blok-box d-flex">
+                            <div class="search-wrap">
+                                <a href="#" class="trigger-search"><i class="ion-ios-search-strong"></i></a>
+                            </div>
+
+
+                            <div class="user-wrap">
+                                <a href="~/product/wishlist"><i class="ion-android-favorite-outline"></i></a>
+                            </div>
+
+
+                            <div class="shopping-cart-wrap">
+                                <a href="~/order/cart"><i class="ion-ios-cart-outline"></i> <span id="cart-total">0</span></a>
+                                <ul class="mini-cart head-cart ">
+                                </ul>
+                            </div>
+                            <div class="login-icon ">
+
+
+                                @if (Session["CustomerName"] != null)
+                                {
+                                    <a href="" dropdown-toggle" data-toggle="dropdown"><i class="ion-ios-contact"></i></a>
+                                    <div class="dropdown-menu alignment p-0 mt-0">
+                                        <a class="dropdown-item border-bottom text-center" style="font-size:12px;" href="#"><span class="font-weight-bold">Hi!</span> @Session["CustomerName"]</a>
+                                        <a href="~/Order/Myorders" class="about-bg border-bottom dropdown-item font-weight-bold py-4 text-center" style="font-size:12px;">My Orders</a>
+                                        <a class="dropdown-item text-center " style="font-size:12px;" href="~/account/logout">Logout</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a href="~/account/Login_Register?id=1"><i class="ion-ios-contact"></i></a>
+                                }
+
+                            </div>
+                            <div class="mobile-menu-btn d-block d-lg-none">
+                                <div class="off-canvas-btn">
+                                    <i class="ion-android-menu">
+                                    </i>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- haeader bottom End -->
+        <!-- main-search start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><span class="ion-android-close"></span></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form>
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="Search entire category here ..." type="search">
+                        <button id="search-btn" onclick="Search(); return false;" class="search-btn" type="button">
+                            <i class="ion-ios-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- main-search start -->
+        <!-- off-canvas menu start -->
+        <aside class="off-canvas-wrapper">
+            <div class="off-canvas-overlay"></div>
+            <div class="off-canvas-inner-content">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#menu" data-translate="00s9">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#other" data-translate="00s10">Other</a>
+                    </li>
+                </ul>
+                <div class="btn-close-off-canvas">
+                    <i class="ion-android-close"></i>
+                </div>
+                <div class="tab-content">
+                    <div id="menu" class="tab-pane active">
+                        <div class="off-canvas-inner">
+                            <!-- mobile menu start -->
+                            <div class="mobile-navigation">
+                                <!-- mobile menu navigation start -->
+                                @Html.Action("MobileNavigation", "Shared")
+
+                                <!-- mobile menu navigation end -->
+                            </div>
+                            <!-- mobile menu end -->
+                            <!-- offcanvas widget area start -->
+                            <div class="offcanvas-widget-area pt-55">
+                                <div class="off-canvas-contact-widget">
+                                    <ul>
+                                        <li>
+                                            <a href="#">+973 33441480</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">info@flowerlink.net</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="off-canvas-social-widget">
+                                    <a href="#"><i class="ion-social-facebook"></i></a>
+                                    <a href="#"><i class="ion-social-instagram-outline"></i></a>
+                                </div>
+
+                            </div>
+                            <!-- offcanvas widget area end -->
+                        </div>
+                    </div>
+                    <div id="other" class="tab-pane">
+                        <div class="off-canvas-inner">
+                            <!-- mobile menu start -->
+                            <div class="mobile-navigation">
+                                <!-- mobile menu navigation start -->
+                                <nav>
+                                    <ul class="mobile-menu">
+                                        <li><a href="~/home/index" data-translate="a0">Home</a></li>
+                                        <li><a href="~/home/contact" data-translate="00cn1">Contact</a></li>
+                                        <li><a href="~/home/about" data-translate="aa0">About Us</a></li>
+
+                                        <li><a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" data-translate="00s1">Shop</a></li>
+                                        @if (Session["CustomerName"] != null)
+                                        {
+                                            <li><a href="~/account/logout" data-translate="00l5">Logout</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="~/account/login_register?id=1" data-translate="00l4">Login</a></li>
+                                        }
+                                        <li><a href="~/home/Policy" data-translate="000co33">Policy</a></li>
+                                        <li><i class="fa fa-icon-globe"></i><a onclick="_lang(); return false;" id="_lang">عربى</a></li>
+                                    </ul>
+                                </nav>
+                                <!-- mobile menu navigation end -->
+                            </div>
+                            <!-- mobile menu end -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- off-canvas menu end -->
+    </header>
+
+    <div class="main-wrapper">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="footer-top section-pb section-pt-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="widget-footer mt-20">
+                            <div class="footer-logo">
+                                <a href="~/home/index"><img src="~/Content/assets/images/logo/logo.png" style=" width: 200px;" alt=""></a>
+                            </div>
+                            <p data-translate="00l1">Most experience in the field of flowers and event management for more than 10 years of practice, giving a strong idea in making your events a memorable one.</p>
+                            <div class="newsletter-footer">
+                                <input class="SubscribeEmail" type="text" placeholder="You Email">
+                                <div class="subscribe-button">
+                                    <button onclick="getmail(); toast('Thank you: You have been successfully subscribed to flowerlink. we will keep you updated with our latest news and offers', 1); return false; this.value = '';" class="subscribe-btn"><span data-translate="000co18">Subscribe</span></button>
+                                </div>
+                                <div class="SubscribeEmail-Res"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1"></div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="widget-footer mt-30">
+                            <h6 class="title-widget" data-translate="00s7">QUICK LINK</h6>
+                            <ul class="footer-list">
+                                <li><a href="~/home/index" data-translate="a0">Home</a></li>
+                                <li><a href="~/home/contact" data-translate="00cn1">Contact</a></li>
+                                <li><a href="~/home/about" data-translate="aa0">About Us</a></li>
+                                <li><a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" data-translate="00s1">Shop</a></li>
+                                @if (Session["CustomerName"] != null)
+                                {
+                                    <li><a href="~/account/logout" data-translate="00l5">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/account/login_register?id=1" data-translate="00l4">Login</a></li>
+                                }
+                                <li><a href="~/home/Policy" target="_blank" data-translate="000co33">Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1"></div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget-footer mt-30">
+                            <h6 class="title-widget" data-translate="00s8">QUICK CONTACT</h6>
+                            <ul class="footer-contact">
+                                <li>
+                                    <label><span data-translate="000co19">Phone</span></label>
+                                    <a href="#"><span data-translate="000co22">+973 33441480</span></a>
+                                </li>
+                                <li>
+                                    <label><span data-translate="000co20">Email</span></label>
+                                    <a href="#">info@flowerlink.net</a>
+                                </li>
+                                <li>
+                                    <label><span data-translate="000co21">Address</span></label>
+                                    <span data-translate="00l2">Flower Link, Al Taweela Complex, Building 20, Road 4101 Juffair, Kingdom of Bahrain</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="toast toast-pos" style="z-index:10000000">
+            <div class="toast-header border-0 bg-transparent">
+                <strong class="mr-auto toast-head-text ">Item Added</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+            </div>
+            <div class="toast-body">
+                New Item added to cart
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copy-right-text text-center">
+                            <p>Copyright &copy; Flower Link <a href="http://airtechsolutions.pk/" class="text-default">(Powered By Airtech Solutions)</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        (function () {
+            var options = {
+                whatsapp: "+97333441480", // WhatsApp number
+                call_to_action: "Message us", // Call to action
+                position: "right", // Position may be 'right' or 'left'
+                pre_filled_message: "How can i help you", // WhatsApp pre-filled message
+            };
+            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+    <!-- JS -->
+    <script src="~/Content/assets/js/product-menu.js"></script>
+    <!-- Modernizer JS -->
+    <script src="~/Content/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Content/assets/js/vendor/popper.min.js"></script>
+    <script src="~/Content/assets/js/vendor/bootstrap.min.js"></script>
+
+    <!-- Slick Slider JS -->
+    <script src="~/Content/assets/js/plugins/slick.min.js"></script>
+    <!--  Jquery ui JS -->
+    <script src="~/Content/assets/js/plugins/jqueryui.min.js"></script>
+    <!--  Scrollup JS -->
+    <script src="~/Content/assets/js/plugins/scrollup.min.js"></script>
+    <script src="~/Content/assets/js/plugins/ajax-contact.js"></script>
+
+    <script src="~/Content/assets/js/cookie/js.cookie.js"></script>
+    <script src="~/Content/assets/js/cookie/js.cookie.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/Content/assets/js/main.js"></script>
+    @RenderSection("scripts", false)
+
+    <script>
+
+        var input = document.getElementById("search");
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("search-btn").click();
+            }
+        });
+
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("Head");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("nav-fixed-top");
+            } else {
+                header.classList.remove("nav-fixed-top");
+            }
+        }
+        function Search() {
+            var Searchtxt = $("#search").val();
+
+
+            window.location.href = '/shop/shop?Category=""&CategoryIDs=' + '' + '&SubCategoryIDs=' + "" + '&ColorIDs=' + '' + '&MinPrice=' + 'BD0' + '&MaxPrice=' + 'BD500' + '&Searchtext=' + Searchtxt + '&SortID=' + 0 + '';
+        }
+
+    </script>
+
+    <script src="~/language/translations.js"></script>
+</body>
+</html>

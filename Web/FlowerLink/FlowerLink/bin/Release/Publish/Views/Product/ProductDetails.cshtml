@@ -1,0 +1,351 @@
+﻿@model FlowerLink.Models.BLL.productBLL
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Banner.Count > 0)
+{
+<div class="breadcrumb-area section-ptb" style="background: url(@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@ViewBag.Banner[0].Image) repeat scroll 0 0;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                {
+                    <h2 class="breadcrumb-title">@ViewBag.Banner[0].MainHeading </h2>
+                }
+                else
+                {
+                    <h2 class="breadcrumb-title">@ViewBag.Banner[0].ArabicMainHeading </h2>
+                }
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                    <li class="breadcrumb-item active" data-translate="00pd0">Single Product</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title" data-translate="00pd0">Single Product</h2>
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/home/index" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00pd0">Single Product</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="main-content-wrap section-ptb product-details-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="product-details-images">
+                    <div class="product_details_container">
+                        <div class="product_big_images-top">
+                            <div class="portfolio-full-image tab-content">
+
+                                @if (ViewBag.ProductDetails.ImgList.Count > 0)
+                                {
+                                    foreach (var item in ViewBag.ProductDetails.ImgList)
+                                    {
+                                        if (item.Row_Counter == 1)
+                                        {
+                                            <div role="tabpanel" class="tab-pane active product-image-position prod-detail" id="FL-@item.Row_Counter">
+                                                <a class="pop">
+                                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="#">
+                                                </a>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+
+                                            <div role="tabpanel" class="tab-pane  product-image-position prod-detail" id="FL-@item.Row_Counter">
+                                                <a class="pop">
+                                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="#">
+                                                </a>
+
+                                            </div>
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.Image != "")
+                                    {
+                                        <div role="tabpanel" class="tab-pane active product-image-position  prod-detail" id="">
+                                            <a class="pop">
+                                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@Model.Image">
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div role="tabpanel" class="tab-pane active product-image-position  prod-detail" id="">
+                                            <a class="pop">
+                                                <img src="~/Content/assets/images/NA.png" alt="#">
+                                            </a>
+                                        </div>
+                                    }
+
+
+                                }
+                            </div>
+                        </div>
+                        <ul class="product_small_images-bottom horizantal-product-active nav" role="tablist">
+                            @foreach (var item in ViewBag.ProductDetails.ImgList)
+                            {
+                                <li role="presentation" class="pot-small-img active">
+                                    <a href="#FL-@item.Row_Counter" role="tab" data-toggle="tab">
+                                        <img class="prod-detail-small" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="small-image">
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 px-0 px-md-3">
+                <div class="product_details_info">
+
+                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                    {
+                        <h2 class="m-0">@ViewBag.ProductDetails.Title</h2>
+                    }
+                    else
+                    {
+                        <h2 class="m-0">@ViewBag.ProductDetails.ArabicTitle</h2>
+                    }
+                    @if (ViewBag.ProductDetails.IsDoubleQty != null && ViewBag.ProductDetails.IsDoubleQty != false)
+                    {
+                        <div class="border d-flex justify-content-around my-3 p-2 rounded shadow-sm">
+                            <div class="form-check update-quantity">
+                                <div>
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optradio" checked>
+                                        As Shown
+                                    </label>
+                                </div>
+                                <div>
+                                    @if (ViewBag.ProductDetails.DiscountedPrice == null || ViewBag.ProductDetails.DiscountedPrice == 0)
+                                    {
+                                        <ul class="pro_dtl_prize">
+                                            <li><span class="currency-text mx-0"></span><span class=" mx-0">@ViewBag.ProductDetails.Price</span></li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul class="pro_dtl_prize">
+                                            <li class="old_prize"><span class="currency-text mx-0"></span><span class="mx-0">@ViewBag.ProductDetails.Price</span></li>
+                                            <li><span class="currency-text mx-0"></span><span class="mx-0">@ViewBag.ProductDetails.DiscountedPrice</span></li>
+                                        </ul>
+                                    }
+
+                                </div>
+
+                            </div>
+                            <div class="form-check update-quantity">
+
+                                <label class="form-check-label">
+                                    <input type="radio" id="double" class="form-check-input" name="optradio">
+                                    Make it Bigger
+                                </label>
+                                <ul class="pro_dtl_prize">
+                                    <li><span class="currency-text mx-0"></span><span class="mx-0">@ViewBag.ProductDetails.DoublePrice</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        if (ViewBag.ProductDetails.DiscountedPrice == null || ViewBag.ProductDetails.DiscountedPrice == 0)
+                        {
+                            <ul class="pro_dtl_prize">
+                                <li><span class="currency-text mx-0"></span><span class=" mx-0"> @ViewBag.ProductDetails.Price</span></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="pro_dtl_prize">
+                                <li class="old_prize"><span class="currency-text mx-0"></span><span class="mx-0"> @ViewBag.ProductDetails.Price</span></li>
+                                <li><span class="currency-text mx-0"></span><span class="mx-0"> @ViewBag.ProductDetails.DiscountedPrice</span></li>
+                            </ul>
+                        }
+                    }
+                    <div class="product-quantity-action">
+                        <div class="prodict-statas"><span data-translate="00pd1">Quantity :</span></div>
+                        <div class="product-quantity">
+                            <form action="#">
+                                <div class="product-quantity">
+                                    <div class="cart-plus-minus">
+                                        <input id="product-quantity" value="1" type="number">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <ul class="pro_dtl_btn">
+                        @if (ViewBag.Gift.Count > 0)
+                        {
+                            <li><button class="buy_now_btn addItemLS btnalert" onclick="cartclick();" data-toggle="modal" data-target="#gift">buy now</button></li>
+                        }
+                        else
+                        {
+                            <li><button class="buy_now_btn addItemLS btnalert" onclick="cartclick();">buy now</button></li>
+
+                        }
+                        <li><a href="#" onclick="wishlistclick(); "><i class="ion-heart"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-details-tab mt-60">
+                    <ul role="tablist" class="mb-50 nav">
+                        <li class="active" role="presentation">
+                            <a data-toggle="tab" role="tab" href="#description" class="active" data-translate="00pd2">Description</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="product_details_tab_content tab-content">
+                    <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
+                        <div class="product_description_wrap">
+                            @ViewBag.ProductDetails.Description
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" style="z-index: 16000161 !important;" id="gift">
+    <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" data-translate="00pd3">ADD GIFT</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    @foreach (var item in ViewBag.Gift)
+                    {
+                        <div class="col-6 col-sm-3 col-md-2">
+                            <div class="single-product-wrap">
+                                <div class="product-image gift-tiem">
+                                    <a href="#"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="Produce Images"></a>
+                                </div>
+                                <div class="m-0 product-content gift-tiem-content">
+                                    
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <p><a href="#">@item.Title</a></p>
+                                    }
+                                    else
+                                    {
+                                         <p><a href="#">@item.ArabicTitle</a></p>
+                                    }
+                                    <div class="price-box">
+                                        <span class="new-price ">BD @item.DisplayPrice</span>
+                                        <input type="checkbox" onchange="addGiftItem(this,@Model.ItemID,@item.GiftID, '@item.Title', '@item.Image',@item.DisplayPrice,@item.DiscountedPrice)" name="check" value="@item.GiftID" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="modal-footer ">
+                <input id="hdnItemKey" value="" type="hidden" />
+                <a href="#" class="btn  btn-small" data-dismiss="modal">cancel</a>
+                <button onclick="addgift(); GotoCartPage(); return false;" class="btn btn-default btn-small">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal  fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title border-0"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" class="imagepreview">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var qty = 1;
+    $('#product-quantity').on('change', function () {
+         qty = this.value;
+    });
+    function cartclick() {
+        if ($('#double').is(':checked')) {
+            addtocart(@Model.ItemID, '@Model.Title - Double', '@Model.Image',@Model.DoublePrice,qty);
+            toast('Item Added to Cart', 1);
+        }
+        else {
+            if (@Model.DiscountedPrice == 0 || @Model.DiscountedPrice == null) {
+                addtocart(@Model.ItemID, '@Model.Title', '@Model.Image',@Model.Price,qty);
+                toast('Item Added to Cart', 1);
+            }
+            else {
+                addtocart(@Model.ItemID, '@Model.Title', '@Model.Image',@Model.DiscountedPrice,qty);
+                toast('Item Added to Cart', 1);
+            }
+        }
+    }
+    function wishlistclick() {
+        if ($('#double').is(':checked')) {
+            addtoWishlist(@Model.ItemID, '@Model.Title - Double', '@Model.Image',@Model.DoublePrice, '@Model.InStock.ToString()', qty);
+            toast('Item Added to wishlist', 1);
+        }
+        else {
+            if (@Model.DiscountedPrice == 0 || @Model.DiscountedPrice == null) {
+                addtoWishlist(@Model.ItemID, '@Model.Title', '@Model.Image',@Model.Price, '@Model.InStock.ToString()', qty);
+                toast('Item Added to wishlist', 1);
+            }
+            else {
+                addtoWishlist(@Model.ItemID, '@Model.Title', '@Model.Image',@Model.DiscountedPrice, '@Model.InStock.ToString()', qty);
+                  toast('Item Added to wishlist', 1);
+            }
+        }
+    }
+    function GotoCartPage() {
+        window.location.href = '/order/cart/';
+    }
+
+    $(function () {
+        $('.pop').on('click', function () {
+            $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+            $('#imagemodal').modal('show');
+        });
+    });
+
+</script>

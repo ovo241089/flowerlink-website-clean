@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<FlowerLink.Models.BLL.navigationBLL>
+<nav class="main-navigation">
+    <ul>
+        @foreach (var item in Model)
+        {
+        <li class="">
+            @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+            {
+                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = item.CategoryID, SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@item.Title</a>
+            }
+            else
+            {
+                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = item.CategoryID, SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@item.ArabicTitle</a>
+            }
+
+            @if (item.SubCategories.Count > 0)
+            {
+                <ul class="sub-menu">
+
+                    @foreach (var sub in item.SubCategories)
+                    {
+                        if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                        {
+                            <li><a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = sub.SubCategoryID ,ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@sub.Title</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = sub.SubCategoryID ,ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@sub.ArabicTitle</a></li>
+                        }
+
+                    }
+                </ul>
+            }
+        </li>
+        }
+
+    </ul>
+</nav>
+

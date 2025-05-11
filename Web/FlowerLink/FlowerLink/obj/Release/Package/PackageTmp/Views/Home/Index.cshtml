@@ -1,0 +1,2770 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    @@media only screen and (max-width: 991px) and (min-width: 333px) {
+        #cart-total {
+            top: -10px;
+            right: 7px;
+        }
+    }
+    @@media only screen and (max-width: 991px) {
+        .centered {
+            position: absolute;
+            top: 40% !important;
+            left: 52% !important;
+            transform: translate(-50%, -50%);
+        }
+        .section-title {
+            margin-bottom: 10px!important;
+            text-align: center;
+        }
+        .mobsaleend {
+            text-align: center !important;
+        }
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1099px) and (min-width: 1024px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    /*...*/
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1024px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+    /*haha*/
+
+
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 1040px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+    .btn-default {
+        border-radius: 10px;
+    }
+
+    .input-group > .custom-select:not(:last-child), .input-group > .form-control:not(:last-child) {
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+    }
+
+    .bg-productCategory {
+        background-image: url('../../Content/assets/images/product/shop-by-cat.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 27px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: -45px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: -45px !important;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: -45px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 27px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: -45px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: -45px !important;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: -45px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 27px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: -45px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: -45px !important;
+        }
+    }
+
+    @@media only screen and (min-width: 1100px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: -45px !important;
+            left: auto !important;
+        }
+    }
+
+
+    /*mobile*/
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+    /*mob arrow end*/
+    @@media only screen and (max-width: 413px) {
+
+        .product-image-all-products > a img {
+            height: 165px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        .product-image-all-products > a img {
+            height: 137px !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 413px) {
+        .product-image > a img {
+            height: 156px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 413px) {
+        #countdown {
+            width: 304px !important;
+            height: 82px !important;
+            top: 50px !important;
+        }
+
+            #countdown .labels {
+                width: 100%;
+                height: 43px !important;
+                text-align: center;
+                position: absolute;
+                bottom: 8px;
+            }
+
+            #countdown:before {
+                top: 9px !important;
+            }
+
+            #countdown:after {
+                top: 9px !important;
+            }
+    }
+
+
+    /*raza*/
+    @@media only screen and (max-width: 768px) {
+
+        .product-image-all-products > a img {
+            height: 165px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-image-all-products > a img {
+            height: 137px !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .product-image > a img {
+            height: 262px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        #countdown {
+            width: 304px !important;
+            height: 82px !important;
+            top: 50px !important;
+        }
+
+            #countdown .labels {
+                width: 100%;
+                height: 43px !important;
+                text-align: center;
+                position: absolute;
+                bottom: 8px;
+            }
+
+            #countdown:before {
+                top: 9px !important;
+            }
+
+            #countdown:after {
+                top: 9px !important;
+            }
+    }
+    /*raza*/
+
+
+
+
+
+
+
+
+    @@media only screen and (max-width: 991px) {
+
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+  /*  @@media only screen and (max-width: 991px) {
+        .product-image-all-products > a img {
+            height: 225px !important;
+        }
+    }
+*/
+
+
+    @@media only screen and (max-width: 991px) {
+        .product-image > a img {
+            height: 225px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 991px) {
+        .product-imageMob > a img {
+            height: 265px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 992px) {
+        .product-imageMob > a img {
+            height: 265px !important;
+        }
+    }
+
+
+    @@media only screen and (max-width: 991px) {
+        #countdown {
+            width: 304px !important;
+            height: 82px !important;
+            top: 50px !important;
+        }
+
+            #countdown .labels {
+                width: 100%;
+                height: 43px !important;
+                text-align: center;
+                position: absolute;
+                bottom: 8px;
+            }
+
+            #countdown:before {
+                top: 9px !important;
+            }
+
+            #countdown:after {
+                top: 9px !important;
+            }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+    /*mob arrow end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    /*//ammad*/
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-6 .slick-arrow, .product-two-row-6 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 43%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-6:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-6 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-4 .slick-arrow, .product-two-row-4 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 50%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-4:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-4 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-3 .slick-arrow, .product-two-row-3 .slick-arrow {
+            font-size: 15px;
+            position: absolute;
+            top: 44%;
+            color: white;
+            background: #000263;
+            right: 1px !important;
+            right: auto !important;
+            border: 1px solid white;
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 30px;
+            opacity: 1;
+            visibility: visible;
+            z-index: 5;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-3:hover .slick-arrow.slick-prev, .slick-arrow.slick-prev {
+            left: 1px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-active-lg-3 .slick-arrow.slick-next, .product-two-row-6 .slick-arrow.slick-next {
+            right: 1px !important;
+            left: auto !important;
+        }
+    }
+    /*ammad*/
+
+
+
+
+
+
+    @@media only screen and (max-width: 440px) {
+
+        .product-image-all-products > a img {
+            height: 165px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-image-all-products > a img {
+            height: 137px !important;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .product-image > a img {
+            height: 250px !important;
+        }
+    }
+    @@media only screen and (max-width: 768px) {
+        .product-image-flash > a img {
+            height: 160px !important;
+        }
+    }
+
+
+
+    @@media only screen and (max-width: 440px) {
+        .product-image > a img {
+            height: 156px !important;
+        }
+
+        .product-content {
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .single-blog .blog-content {
+            margin-top: 2px;
+            max-width: 480px;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        #countdown {
+            width: 304px !important;
+            height: 82px !important;
+            top: 50px !important;
+        }
+
+            #countdown .labels {
+                width: 100%;
+                height: 43px !important;
+                text-align: center;
+                position: absolute;
+                bottom: 8px;
+            }
+
+            #countdown:before {
+                top: 9px !important;
+            }
+
+            #countdown:after {
+                top: 9px !important;
+            }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*flash sale*/
+    @@media only screen and (max-width: 413px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+
+    @@media only screen and (max-width: 413px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 413px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+    /*end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*flash sale*/
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+
+    @@media only screen and (max-width: 768px) {
+        .section-title {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .centered {
+            position: absolute;
+            top: 40% ;
+            left: 52% ;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobsaleend {
+            text-align: center !important;
+        }
+
+        .product-active-lg-3 {
+            margin-top: 50px !important;
+        }
+
+        .product-content h3 {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+    /*end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @@media only screen and (max-width: 413px) {
+        .product-content .price-box {
+            font-size: 14px;
+            padding-bottom: 15px;
+            line-height: 19px;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .product-content .price-box {
+            font-size: 14px;
+            padding-bottom: 15px;
+            line-height: 19px;
+        }
+    }
+
+    .centered {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bg-productFlashSale {
+        background-image: url('../../Content/assets/images/bgflash.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .bg-productInsta {
+        background-image: url('../../Content/assets/images/bg-insta.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .product-box {
+        border-radius: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        box-shadow: 0px 0px 4px 0px #ddd;
+    }
+
+
+    .product-image > a img {
+        width: 100%;
+        height: 215px;
+        object-fit: fill;
+    }
+
+
+
+    .product-image > a img {
+        border-radius: 10px;
+    }
+
+
+    #countdown {
+        width: 316px;
+        height: 96px;
+        text-align: center;
+        background: #222;
+        background-image: -webkit-linear-gradient(top, #222, #333, #333, #222);
+        background-image: -moz-linear-gradient(top, #222, #333, #333, #222);
+        background-image: -ms-linear-gradient(top, #222, #333, #333, #222);
+        background-image: -o-linear-gradient(top, #222, #333, #333, #222);
+        border: 1px solid #111;
+        border-radius: 5px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+        margin: auto;
+        padding: 24px 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+        #countdown:before {
+            content: "";
+            width: 8px;
+            height: 65px;
+            background: #444;
+            background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -o-linear-gradient(top, #555, #444, #444, #555);
+            border: 1px solid #111;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: -10px;
+        }
+
+        #countdown:after {
+            content: "";
+            width: 8px;
+            height: 65px;
+            background: #444;
+            background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
+            background-image: -o-linear-gradient(top, #555, #444, #444, #555);
+            border: 1px solid #111;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: -10px;
+        }
+
+        #countdown #tiles {
+            position: relative;
+            z-index: 1;
+        }
+
+            #countdown #tiles > span {
+                width: 52px;
+                height: 50px;
+                max-width: 92px;
+                font: bold 20px 'Droid Sans', Arial, sans-serif;
+                text-align: center;
+                color: #111;
+                background-color: #ddd;
+                background-image: -webkit-linear-gradient(top, #bbb, #eee);
+                background-image: -moz-linear-gradient(top, #bbb, #eee);
+                background-image: -ms-linear-gradient(top, #bbb, #eee);
+                background-image: -o-linear-gradient(top, #bbb, #eee);
+                border-top: 1px solid #fff;
+                border-radius: 3px;
+                box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+                margin: 0 7px;
+                padding: 18px 0;
+                display: inline-block;
+                position: relative;
+            }
+
+                #countdown #tiles > span:before {
+                    content: "";
+                    width: 100%;
+                    height: 13px;
+                    background: #111;
+                    display: block;
+                    padding: 0 3px;
+                    position: absolute;
+                    top: 31%;
+                    left: -3px;
+                    z-index: -1;
+                }
+
+                #countdown #tiles > span:after {
+                    content: "";
+                    width: 100%;
+                    height: 1px;
+                    background: #eee;
+                    border-top: 1px solid #333;
+                    display: block;
+                    position: absolute;
+                    top: 48%;
+                    left: 0;
+                }
+
+        #countdown .labels {
+            width: 100%;
+            height: 48px;
+            text-align: center;
+            position: absolute;
+            bottom: 8px;
+        }
+
+            #countdown .labels li {
+                width: 61px;
+                font: bold 15px 'Droid Sans', Arial, sans-serif;
+                color: #f47321;
+                text-align: center;
+                text-transform: uppercase;
+                display: inline-block;
+            }
+
+
+
+    .all-product-image {
+        background: white;
+        border-radius: 0.6rem !important;
+        box-shadow: 0 0rem 0rem rgba(0, 0, 0, 0) !important;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+    }
+
+    .product-content .price-box {
+        font-size: 14px;
+        padding-bottom: 20px;
+    }
+
+    .embedsocial-hashtag-iframe #es-header {
+        display: none !important;
+    }
+</style>
+<div class="hero-slider hero-slider-one d-lg-block d-none">
+
+    @foreach (var item in ViewBag.Banner)
+    {
+        <div class="single-slide" style="background-image: url(@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image)">
+            <div class="hero-content-one container">
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <div class="slider-text-info">
+                            @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                            {
+                                <h2>@item.Title </h2>
+                                <h1>@item.MainHeading </h1>
+                                <p class="slider-para">@item.Description</p>
+                            }
+                            else
+                            {
+                                <h2>@item.ArabicTitle </h2>
+                                <h1>@item.ArabicMainHeading </h1>
+                                <p class="slider-para">@item.ArabicDescription</p>
+                            }
+                            <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" class="btn btn-default uppercase btn-large Shop-Now-Button"><span data-translate="000a3">SHOP NOW</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<div class="deal-row"></div>
+
+
+<div id="mySidenav" class="sidenav border shadow">
+    <div class="d-flex justify-content-between">
+        <div class="px-3">
+            <h5> </h5>
+        </div>
+        <div class="px-3">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+    </div>
+    <div class="off-canvas-inner">
+        <div class="mobile-navigation side-navigation">
+            <nav class="feature px-3">
+                <div class="shop-sidebar">
+                    <h4 class="" data-translate="00h4">FILTER BY TEXT</h4>
+                </div>
+                <div class="input-group input-group-sm my-4">
+                    <input type="text" class="form-control Seachtxt" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <a href="javascript:;" class="filterOn btn btn-default btn-small" data-translate="00h6">Search</a>
+                    </div>
+                </div>
+                <div class="shop-sidebar mb-4 pt-1">
+
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <h4 class="title" data-translate="00h7">CATEGORIES</h4>
+                        </div>
+                        <div class="">
+                            <a href="javascript:;" class=" filterOn"><i class="ion-ios-search-strong"></i></a>
+                        </div>
+                    </div>
+                    <ul class="scroll-style ">
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                            {
+                                <li><label><input type="checkbox" name="Category" class="mr-2" value="@item.CategoryID">@item.Title</label></li>
+                            }
+                            else
+                            {
+                                <li><label><input type="checkbox" name="Category" class="mr-2" value="@item.CategoryID">@item.ArabicTitle</label></li>
+                            }
+
+                        }
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <div class=" shop-sidebar filter-price-content">
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <h4 class="mb-0" data-translate="00h5">FILTER BY PRICE</h4>
+                            </div>
+                            <div class="">
+                                <a href="javascript:;" class="filterOn"><i class="ion-ios-search-strong"></i></a>
+                            </div>
+                        </div>
+
+                        <form action="#" method="post">
+                            <div id="price-slider-home" class="price-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 16.6667%; width: 79.1667%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 16.6667%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 95.8333%;"></span></div>
+                            <div class="filter-price-wapper">
+                                <div class="filter-price-cont">
+                                    <span>Price:</span>
+                                    <div class="input-type">
+                                        <input type="text" class="mr-1 pr-0 min-price" id="min-price-home" readonly="">
+                                    </div>
+                                    <span>—</span>
+                                    <div class="input-type">
+                                        <input type="text" class="mx-1 pr-0 max-price" id="max-price-home" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "305px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<div class="porduct-area  prod-banner">
+
+    <div class="porduct-area section-pt  section-pb-60 bg-productCategory d-sm-block">
+        <div class="container w-100">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="section-title text-center">
+                        <h2 class="text-default"><span class="font-weight-lighter">Shop By</span> Categories</h2>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row product-active-lg-6 product-active">
+
+                @foreach (var item in ViewBag.Category)
+                {
+                    <div class="col-6 col-lg-3 text-center">
+                        <div class="single-blog mt-30 categorybox ">
+                            <div class="blog-image">
+                                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = item.CategoryID, SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">
+                                    <div class="zoom"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="" /></div>
+                                </a>
+                            </div>
+                            <div class="blog-content">
+                                <h6>
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = item.CategoryID, SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@item.Title</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = item.CategoryID, SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})">@item.ArabicTitle</a>
+                                    }
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="porduct-area section-pt section-pb-60 bg-product d-sm-block ">
+        <div class="container w-100">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="section-title text-center">
+                        <h2 class="text-default" data-translate="00h11"><span class="font-weight-lighter">Featured</span> Products</h2>
+                        <p data-translate="00h10">With FlowerLink, you can buy happy birthday flowers, thoughtful get well gifts, funeral and sympathy flower arrangements, and your everyday beautiful florals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row product-active-lg-4 product-active">
+
+                @foreach (var item in ViewBag.Featureditems)
+                {
+                    <div class="col-lg-3">
+                        <div class="single-product-wrap product-box">
+                            <div class="product-image all-product-image card1 ">
+                                @if (item.Image == "" || item.Image == null)
+                                {
+                                    <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title"></a>
+                                }
+                                @if (item.HoveredImage == "" || item.HoveredImage == null)
+                                {
+                                    <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title"></a>
+                                }
+
+                                @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                {
+                                    <div class="product-action">
+                                        <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                        <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="product-action">
+                                        <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                        <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="product-content">
+
+                                @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                {
+                                    <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></h3>
+                                }
+                                else
+                                {
+                                    <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></h3>
+                                }
+                                @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                {
+                                    <div class="price-box">
+                                        <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.Price</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="price-box">
+                                        <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @item.Price</span>
+                                        <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.DiscountedPrice</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-12 text-center mt-50">
+                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" class="btn btn-default  btn-large" tabindex="0"><span data-translate="00h12">View All</span></a>
+            </div>
+        </div>
+    </div>
+
+
+    @if (ViewBag.FlashSaleStatus == 1)
+    {
+        <div class="porduct-area section-pt section-pb-60 bg-productFlashSale d-sm-block " id="hide">
+            <div class="container w-100">
+                <div class="row">
+                    <div class="col-lg-4 text-left">
+                        <div class="section-title ">
+                            <h2 class="text-default"><span class="font-weight-lighter centered" style="color:white;">Flash <strong>Sale</strong></span></h2>
+                            <div>
+                                <img src="~/Content/assets/images/btnflash.png" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 text-right mobsaleend">
+                        <div>
+                            <h2 class="text-default"><span class="font-weight-lighter " style="color:white;font-size:28px;">Sales ends  <strong>in.</strong></span></h2>
+                            <input class="d-none" id="fromDate" value="@ViewBag.FlashSaleStart" type="text">
+                            <input class="d-none" id="toDate" value="@ViewBag.FlashSaleEnd" type="text">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="section-title text-right">
+
+
+
+                            @*<div id="countdown">
+
+                                            <ul style="color:white;font-size:20px;">
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+
+                                </div>*@
+
+                            <div id="countdown">
+
+                                <div class="labels">
+
+                                    <ul>
+                                        <li id="days"></li>
+                                        <li id="hours"></li>
+                                        <li id="minutes"></li>
+                                        <li id="seconds"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row product-active-lg-3 product-active" style="padding-top:50px;">
+
+                    @foreach (var itemFlash in ViewBag.FlashSaleJunc)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single-product-wrap product-box">
+                                <div class="product-image product-image-flash  all-product-image card1 ">
+                                    @if (itemFlash.Image == "" || itemFlash.Image == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@itemFlash.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@itemFlash.Image" alt="@itemFlash.Title" style="height:340px;"></a>
+                                    }
+                                    @if (itemFlash.HoveredImage == "" || itemFlash.HoveredImage == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@itemFlash.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@itemFlash.HoveredImage" alt="@itemFlash.Title" style="height:340px;"></a>
+                                    }
+
+                                    @if (itemFlash.DiscountedPrice == null || itemFlash.DiscountedPrice == 0)
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@itemFlash.ItemID,'@itemFlash.Title','@itemFlash.Image',@itemFlash.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            @*<a class="wishlist" onclick="addtoWishlist(@itemFlash.ItemID, '@itemFlash.Title', '@itemFlash.Image',@itemFlash.Price, '@itemFlash.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>*@
+                                            <a class="wishlist" onclick="addtoWishlist(@itemFlash.ItemID, '@itemFlash.Title', '@itemFlash.Image',@itemFlash.Price,1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@itemFlash.ItemID,'@itemFlash.Title','@itemFlash.Image',@itemFlash.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            <a class="wishlist" onclick="addtoWishlist(@itemFlash.ItemID, '@itemFlash.Title', '@itemFlash.Image',@itemFlash.DiscountedPrice, '1',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="product-content">
+
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })">@itemFlash.Title</a></h3>
+                                    }
+                                    else
+                                    {
+                                        @*<h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = itemFlash.ItemID })">@itemFlash.ArabicTitle</a></h3>*@
+                                    }
+                                    @*@if (itemFlash.DiscountedPrice == null || itemFlash.DiscountedPrice == 0)
+                                        {
+                                            <div class="price-box">
+                                                <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @itemFlash.Price</span>
+                                            </div>
+                                        }
+                                        else
+                                        {*@
+                                    <div class="price-box">
+                                        <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @itemFlash.Price</span>
+                                        <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @itemFlash.DiscountedPrice</span>
+                                    </div>
+                                    @*}*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+
+    <div class="container section-pt w-100">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="section-title text-center">
+
+                    <div class="d-flex justify-content-between mb-3 ">
+                        <div class="p-2"><h2 class="text-default " data-translate="00h13"><span class="font-weight-lighter">All</span> Products</h2></div>
+                        <div class="align-self-center ">
+                            <a style="font-size: 14px;cursor: pointer;padding: 4px 15px;" class="bold border border-dark btn btn-default shadow-sm" onclick="openNav()"><i class="ion-funnel mr-1"></i> <span data-translate="000a4">Filter</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*Large Screen*@
+        <div class="row all-products d-lg-flex d-none">
+            @foreach (var item in ViewBag.TenItems)
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="single-product-wrap product-box">
+                        <a class="add-to-cart-mobile d-sm-none d-block addItemLS btnalert"><i class="ion-ios-cart text-white"></i></a>
+                        <div class="product-image product-image-all-products all-product-image card1">
+                            @if (item.Image == "" || item.Image == null)
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title"></a>
+                            }
+                            @if (item.HoveredImage == "" || item.HoveredImage == null)
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top " src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top " src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title"></a>
+                            }
+                            @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                            {
+                                <div class="product-action d-sm-block d-none">
+                                    <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                    <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="product-action d-sm-block d-none">
+                                    <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                    <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="mt-0 mt-sm-3 product-content Feature-tiem-content">
+                            @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                            {
+                                <p><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></p>
+                            }
+                            else
+                            {
+                                <p><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></p>
+                            }
+
+                            @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                            {
+                                <div class="price-box">
+                                    <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0"> @item.Price</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price-box">
+                                    <span class="currency-text mx-0"></span><span class="old-price  mx-0"> @item.Price</span>
+                                    <span class="currency-text mx-0 text-default"></span><span class="new-price  mx-0"> @item.DiscountedPrice</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-md-12 text-center my-4 pt-lg-5">
+                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" class="btn btn-default  btn-large" tabindex="0"><span data-translate="00h12">View All</span></a>
+            </div>
+        </div>
+        @*mobile View*@
+        <div class="row all-products  d-flex d-lg-none">
+            @foreach (var item in ViewBag.itemList)
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="single-product-wrap">
+                        @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                        {
+                            <a class="add-to-cart-mobile d-sm-none d-block addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-ios-cart text-white"></i></a>
+                        }
+                        else
+                        {
+                            <a class="add-to-cart-mobile d-sm-none d-block addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-ios-cart text-white"></i></a>
+                        }
+                        <div class="product-image product-imageMob Feature-tiem card1">
+                            @if (item.Image == "" || item.Image == null)
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title"></a>
+                            }
+                            @if (item.HoveredImage == "" || item.HoveredImage == null)
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title"></a>
+                            }
+                        </div>
+                        <div class="mt-0 mt-sm-3 product-content Feature-tiem-content">
+                            @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                            {
+                                <p><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"> @item.Title </a></p>
+                            }
+                            else
+                            {
+                                <p><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></p>
+                            }
+
+                            @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                            {
+                                <div class="price-box">
+                                    <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0">@item.Price</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price-box">
+                                    <span class="currency-text mx-0"></span><span class="old-price mx-0">@item.Price</span>
+                                    <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0">@item.DiscountedPrice</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-md-12 text-center my-4 pt-lg-5">
+                <a href="@Url.Action("shop", "shop", new { Category = "", CategoryIDs = "", SubCategoryIDs = "",ColorIDs = "",MinPrice = "BD0",MaxPrice = "BD500",Searchtext = "",SortID=0})" class="btn btn-default  btn-large" tabindex="0"><span>View All</span></a>
+            </div>
+        </div>
+    </div>
+
+
+    @*<div class=" bg-workflow py-5 d-lg-block d-none">*@
+    <div class="py-5 d-lg-block d-none" style="background:#f3f3f3">
+        <div class="container">
+
+            <div class="row ">
+                <div class="col-lg-3 col-md-6 py-3">
+                    <img class="flow-img" src="~/Content/assets/images/workflow/flower.png">
+                    <p class="pt-30 px-3 text-center ">Choose Your Flower</p>
+                    @*<img class="arrow" src="~/Content/assets/images/workflow/arrow.png">*@
+                </div>
+                <div class="col-lg-3 col-md-6 py-3">
+                    <img class="flow-img" src="~/Content/assets/images/workflow/order.png">
+                    <p class="pt-30 px-3 text-center ">Fill Order Data Form</p>
+                    @*<img class="arrow" src="~/Content/assets/images/workflow/arrow.png">*@
+                </div>
+                <div class="col-lg-3 col-md-6 py-3">
+                    <img class="flow-img" src="~/Content/assets/images/workflow/payment.png">
+                    <p class="pt-30 px-3 text-center ">Make Payment</p>
+                    @*<img class="arrow" src="~/Content/assets/images/workflow/arrow.png">*@
+                </div>
+                <div class="col-lg-3 col-md-6 py-3">
+                    <img class="flow-img" src="~/Content/assets/images/workflow/bus.png">
+                    <p class="pt-30 px-3 text-center ">Flower Shipping</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="porduct-area section-pt-30 section-pb-60 bg-productInsta d-sm-block ">
+        <div class="container w-100">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="section-title text-center">
+
+                        <p style="color:white;">
+                            <img src="~/Content/assets/images/smalllogo.png" /> &nbsp;&nbsp;
+                            <a target="_blank" href="https://www.instagram.com/flowerlink/">instagram.com/flowerlink/</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="embedsocial-hashtag" data-ref="c9eeca00380a5ef08a72e5faf2cf0a446eb14569"><a class="feed-powered-by-es feed-powered-by-es-slider" href="https://embedsocial.com/social-media-aggregator/" target="_blank"><span></span></a></div>
+            <script>(function (d, s, id) { var js; if (d.getElementById(id)) { return; } js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js); }(document, "script", "EmbedSocialHashtagScript"));</script>
+            @*<div class="row product-active-lg-3 product-active">
+
+                    @foreach (var item in ViewBag.Featureditems)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single-product-wrap">
+                                <div class="product-image all-product-image card1 ">
+                                    @if (item.Image == "" || item.Image == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title" style="height:340px;"></a>
+                                    }
+                                    @if (item.HoveredImage == "" || item.HoveredImage == null)
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title"></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title" style="height:340px;"></a>
+                                    }
+
+                                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product-action">
+                                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="product-content">
+
+                                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                                    {
+                                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></h3>
+                                    }
+                                    else
+                                    {
+                                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></h3>
+                                    }
+                                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                                    {
+                                        <div class="price-box">
+                                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.Price</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="price-box">
+                                            <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @item.Price</span>
+                                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.DiscountedPrice</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>*@
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class=" bg-newsletter py-5">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-lg-4 ">
+                <h4 class="text-newsletter text-center text-white" data-translate="00h9">Subscribe Our <span>Newsletter</span></h4>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control rounded-0 SubscribeEmail" placeholder="Enter your email">
+                    <div class="input-group-append">
+                        <a onclick="getmail(); toast('Thank you: You have been successfully subscribed to flowerlink. we will keep you updated with our latest news and offers', 1); return false" class="btn btn-small rounded-0 btn-newsletter"><i class="ion-paper-airplane newsletter-icon" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="SubscribeEmail-Res"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <!--<script>
+
+        function CountDownTimer() {
+            var currency = localStorage.getItem("currency");
+            var html = '';
+            var item = @Html.Raw(Json.Encode(ViewBag.Deal));
+
+           html +='<div class="bg-deal section-ptb d-lg-block d-none">'
+            +'<div class="container w-100">'
+            +'<div class="row align-items-center">'
+            +'<div class="col-lg-12">'
+            +'<div class="section-title text-center">'
+            +'<h2 class="text-default"><span class="font-weight-lighter">Deals of</span> The Month</h2>'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'<div class="row ">'
+
+
+            for (var i = 0; i < item.length; i++) {
+
+
+                html += '<div class="col-md-6">'
+                    + '<div class="card my-3 ">'
+                    + '<div class="card-body row">'
+                    + '<div class="align-self-center col-sm-5 col-4">'
+                    + '<img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()'+item[i].DealImage+'" style="height: 200px; object-fit: contain;" />'
+                    + '</div>'
+                    + '<div class=" align-self-center col-8 col-sm-7">'
+                    + '<p class="card-text mt-3 mb-0">' + item[i].Title+' </p>'
+                    + '<div class="price-box">'
+                    + '<span class="price-regular font-weight-bolder">'+currency + item[i].DiscountedPrice + '</span>'
+                    + '</div>'
+                    + '<a href="../product/productdetails?ItemID=' + item[i].ItemID +'" class="mt-0 mb-0 btn btn-small card-link btn-deal3">Get Deal</a>'
+                    + '<div class="countdown-titmer ">'
+                    + '<h5 class="offer-text">' + item[i].Description +'</h5>'
+                    + '<div class="product-countdown" data-countdown="2020/04/25">'
+                    + '<div class="single-countdown"><span id="Days-' + item[i].DealID +'" class="single-countdown__time">00</span><span class="single-countdown__text">Days</span></div>'
+                    + '<div class="single-countdown"><span id="Hours-' + item[i].DealID +'" class="single-countdown__time">00</span><span class="single-countdown__text">Hours</span></div>'
+                    + '<div class="single-countdown"><span id="Mins-' + item[i].DealID +'" class="single-countdown__time">00</span><span class="single-countdown__text">Mins</span></div>'
+                    + '<div class="single-countdown"><span id="Secs-' + item[i].DealID+'" class="single-countdown__time">00</span><span class="single-countdown__text">Secs</span></div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+
+                counter(item[i].EndDate, item[i].DealID);
+
+            }
+            html +=  '</div>'
+                    +'</div>'
+                + '</div>'
+            if (item.length > 0) {
+                $(".deal-row").html(html);
+            }
+
+
+
+            function counter(EndDate, id) {
+
+
+                var end = new Date(EndDate);
+
+
+                var _second = 1000;
+                var _minute = _second * 60;
+                var _hour = _minute * 60;
+                var _day = _hour * 24;
+                var timer;
+
+                function showRemaining() {
+                    var now = new Date();
+                    var distance = end - now;
+                    if (distance < 0) {
+
+                        clearInterval(timer);-->
+    @*document.getElementById(id).innerHTML = 'EXPIRED!';*@
+
+    <!--return;
+                    }
+                    var days = Math.floor(distance / _day);
+                    var hours = Math.floor((distance % _day) / _hour);
+                    var minutes = Math.floor((distance % _hour) / _minute);
+                    var seconds = Math.floor((distance % _minute) / _second);
+
+                    document.getElementById("Days-" + id).innerHTML = days;
+                    document.getElementById("Hours-" + id).innerHTML = hours;
+                    document.getElementById("Mins-" + id).innerHTML = minutes;
+                    document.getElementById("Secs-" + id).innerHTML = seconds;
+                }
+                timer = setInterval(showRemaining, 1000);
+            }
+
+        };
+
+    </script>-->
+
+    <script>
+
+        $(document).ready(function () {
+            var Category = [];
+            var SubCategory = [];
+            var Color = [];
+            $('input[name="Category"]').click(function () {
+                if ($(this).prop("checked") == true) {
+                    Category.push($(this).val());
+                    @*window.history.pushState($(this).val(), "Category", "/Filter");*@
+                }
+                else {
+                    Category.splice($(this).val(), 1);
+                }
+            });
+            $('input[name="Color"]').click(function () {
+                if ($(this).prop("checked") == true) {
+                    Color.push($(this).val());
+                }
+                else {
+                    Color.splice($(this).val(), 1);
+                }
+            });
+            $('input[name="SubCategory"]').click(function () {
+                if ($(this).prop("checked") == true) {
+                    SubCategory.push($(this).val());
+                }
+                else {
+                    SubCategory.splice($(this).val(), 1);
+                }
+            });
+            $(".filterOn").click(function () {
+
+                var Searchtxt = $(".Seachtxt").val();
+                var MinPrice = $(".min-price").val();
+                var MaxPrice = $(".max-price").val();
+                var SortID = 0;
+
+                var CategoryIDs =  Category.join();
+                var SubCategoryIDs =  SubCategory.join();
+                var ColorIDs =  Color.join();
+                window.location.href = '/shop/shop?Category=""&CategoryIDs=' + CategoryIDs + '&SubCategoryIDs=' + SubCategoryIDs + '&ColorIDs=' + ColorIDs + '&MinPrice=' + MinPrice + '&MaxPrice=' + MaxPrice + '&Searchtext=' + Searchtxt + '&SortID=' + SortID + '';
+
+            });
+        });
+
+
+        //var countdown = document.getElementById("tiles");
+
+        //getCountdown();
+
+        //setInterval(function () { getCountdown(); }, 1000);
+
+        //function getCountdown() {
+        //    debugger
+
+        //    var from = $('#fromDate').val();
+        //    var to = $('#toDate').val();
+        //    var startDate = new Date(from);
+        //    var endDate = new Date(to);
+
+        //    var millisBetween = endDate.getTime() - startDate.getTime();
+        //    var days = millisBetween / (1000 * 3600 * 24);
+
+        //    var target_date = $('#toDate').val();
+
+        //    target_date = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
+
+        //    var hours, minutes, seconds; // variables for time units
+
+
+
+        //    var current_date = new Date().getTime();
+
+        //    var seconds_left = (target_date - current_date) / 1000;
+
+        //     days = millisBetween / (1000 * 3600 * 24);
+
+        //    seconds_left = pad(millisBetween / 1000 );
+
+        //    hours = parseInt(millisBetween / (1000 * 60 * 60));
+        //    seconds_left = pad(millisBetween % 3600);
+
+        //    minutes = parseInt(millisBetween / (1000 * 60));
+        //    seconds = parseInt(pad(60));
+
+        //    // format countdown string + set tag value
+        //    countdown.innerHTML = "<span>" + days + "</span><span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>";
+        //}
+
+        //function pad(n) {
+        //    return (n < 10 ? '0' : '') + n;
+        //}
+
+
+
+
+        function makeTimer() {
+
+            var to = $('#toDate').val();
+            var endTime = new Date(to);
+            endTime = (Date.parse(endTime) / 1000);
+
+            var now = new Date();
+            now = (Date.parse(now) / 1000);
+
+            var timeLeft = endTime - now;
+
+            var days = Math.floor(timeLeft / 86400);
+
+
+
+            var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+            var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60);
+            var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+            if (hours < "10") { hours = "0" + hours; }
+            if (minutes < "10") { minutes = "0" + minutes; }
+            if (seconds < "10") { seconds = "0" + seconds; }
+
+            $("#days").html(days + "<span>-Days</span>");
+             $("#hours").html(hours + "<span>-Hr</span>");
+             $("#minutes").html(minutes + "<span>-Min</span>");
+            $("#seconds").html(seconds + "<span>-Sec</span>");
+
+            if (days < 0) {
+                $("#hide").css("display", "none","!important");
+            }
+
+        }
+
+        setInterval(function () { makeTimer(); }, 1000);
+        $("iframe").load(function () {
+            var frameContents;
+            frameContents = $("#IframeId").contents();
+            frameContents.find("#elementId").css("color", "#fff");
+
+
+        });
+
+
+    </script>
+}

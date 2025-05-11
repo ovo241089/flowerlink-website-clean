@@ -1,0 +1,68 @@
+﻿<div class="row product-active-lg-4 product-active">
+
+    @foreach (var item in ViewBag.Featureditems)
+    {
+        <div class="col-lg-3">
+            <div class="single-product-wrap">
+                <div class="product-image all-product-image card1 ">
+                    @if (item.Image == "" || item.Image == null)
+                    {
+                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="~/Content/assets/images/NA.png" alt="@item.Title" style="height:200px;"></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.Image" alt="@item.Title" style="height:200px;"></a>
+                    }
+                    @if (item.HoveredImage == "" || item.HoveredImage == null)
+                    {
+                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="~/Content/assets/images/NA.png" alt="@item.Title" style="height:200px;"></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })"><img class="img-top" src="@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@item.HoveredImage" alt="@item.Title" style="height:200px;"></a>
+                    }
+
+                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                    {
+                        <div class="product-action">
+                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.Price,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.Price, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="product-action">
+                            <a class="add-to-cart addItemLS btnalert" onclick="addtocart(@item.ItemID,'@item.Title','@item.Image',@item.DiscountedPrice,1);toast('Item Added to Cart', 1); return false;"><i class="ion-bag"></i></a>
+                            <a class="wishlist" onclick="addtoWishlist(@item.ItemID, '@item.Title', '@item.Image',@item.DiscountedPrice, '@item.InStock.ToString()',1);toast('Item Added to wishlist', 1); return false; "><i class="ion-android-favorite-outline"></i></a>
+                        </div>
+                    }
+                </div>
+                <div class="product-content">
+
+                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                    {
+                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.Title</a></h3>
+                    }
+                    else
+                    {
+                        <h3><a href="@Url.Action("ProductDetails", "Product", new { ItemID = item.ItemID })">@item.ArabicTitle</a></h3>
+                    }
+                    @if (item.DiscountedPrice == null || item.DiscountedPrice == 0)
+                    {
+                        <div class="price-box">
+                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.Price</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="price-box">
+                            <span class="currency-text mx-0"></span><span class="old-price mx-0 "> @item.Price</span>
+                            <span class="currency-text mx-0 text-default"></span><span class="new-price mx-0 "> @item.DiscountedPrice</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,224 @@
+﻿@model FlowerLink.Models.BLL.loginBLL
+@{
+    ViewBag.Title = "Login_Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Banner.Count > 0)
+{
+    <div class="breadcrumb-area section-ptb" style="background: url(@System.Configuration.ConfigurationManager.AppSettings["Image"].ToString()@ViewBag.Banner[0].Image) repeat scroll 0 0;background-size:cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @if (HttpContext.Current.Request.Cookies["lang"].Value == "en")
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].MainHeading </h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">@ViewBag.Banner[0].ArabicMainHeading </h2>
+                    }
+                    <ul class="breadcrumb-list">
+                        <li class="breadcrumb-item"><a href="~/Account/Login_Register" data-translate="a0">Home</a></li>
+                        <li class="breadcrumb-item active" data-translate="00s1">Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <!-- breadcrumb-area start -->
+    <div class="breadcrumb-area section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="breadcrumb-title" data-translate="a1">Login  / Register</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb-area end -->
+}
+
+
+<!-- main-content-wrap start -->
+<div class="main-content-wrap section-ptb login-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                <div class="login-register-wrapper">
+                    <!-- login-register-tab-list start -->
+                    <div class="login-register-tab-list nav">
+                        <a class="active" data-toggle="tab" href="#lg1">
+                            <h4 data-translate="00a2"> login </h4>
+                        </a>
+                        <a data-toggle="tab" href="#lg2">
+                            <h4 data-translate="00a3"> register </h4>
+                        </a>
+                    </div>
+                    <!-- login-register-tab-list end -->
+                    <div class="tab-content">
+                        <div id="lg1" class="tab-pane active">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form class="needs-validation" novalidate name="myform">
+                                        <div class="login-input-box">
+                                            <div class="form-group">
+                                                <input id="emaillogin" type="email" class="form-control mb-0" name="Email" placeholder=" Email " required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="passwordlogin" type="password" class="form-control mb-0" name="Password" placeholder="Password" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="button-box d-flex flex-column">
+                                            <div class="login-toggle-btn">
+                                                <a href="#">@Session["LoginNote"]</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-default flex-shrink-1 login-btn px-3 py-2" id="login-btn" type="submit"><span data-translate="00a2" onclick="login(); return false;">Login</span></button>
+                                                <a href="@Url.Action("Checkout", "Order", new { id = 0 })" class="btn flex-shrink-0 login-btn p-2"><span data-translate="00a4">Continue as Guest</span></a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lg2" class="tab-pane">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form  class="needs-validation" novalidate name="myform">
+                                        <div class="login-input-box">
+                                            <div class="form-group">
+                                                <input type="text" id="FirstName" name="FirstName" class="form-control mb-0" placeholder="First Name" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" id="LastName" name="LastName" class="form-control mb-0" placeholder="Last Name" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="Email" id="Email" placeholder="Email" class="form-control mb-0" type="email" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" id="Password" name="Password" class="form-control mb-0" placeholder="Password" required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                            <div class="form-group"> 
+                                                <input type="text" value="" id="ContactNo" name="ContactNo" class="form-control mb-0" placeholder="Contact no." required>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Invalid.</div>
+                                            </div>
+                                        </div>
+                                        <div class="button-box">
+                                            <button class="register-btn btn btn-default" type="submit"><span data-translate="00a3" onclick="Register(); return false;">Register</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main-content-wrap end -->
+<script type="text/javascript">
+
+    function login() {
+        de
+        //get settings
+        var Order = new Object();
+        Order.Email = $('#emaillogin').val();
+        Order.passwordlogin = $('#passwordlogin').val();
+        var Masterorder = JSON.stringify({ 'data': Order });
+
+        if (chkLSsettings != null) {
+            $.ajax({
+                type: "POST",
+                url: 'api/account/loginregister',
+                data: Masterorder,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert("success 1")
+                    //var arrTemp = [];
+                    //arrTemp = getsettingsLS();
+                    //arrTemp.push({ DeliveryCharges: data.DeliveryCharges, ServiceCharges: data.ServiceCharges, OtherCharges: data.OtherCharges, TaxPercentage: data.TaxPercentage, MinimumOrderValue: data.MinimumOrderValue, COD: data.COD, Credimax: data.Credimax, PayPal: data.PayPal, BenefitPay: data.BenefitPay, TopHeaderText: data.TopHeaderText });
+                    //if (data.COD != 1) {
+                    //    $('#COD').addClass('d-none');
+                    //}
+                    //if (data.Credimax != 1) {
+                    //    $('#Credimax').addClass('d-none');
+                    //}
+                    //if (data.PayPal != 1) {
+                    //    $('#PayPal').addClass('d-none');
+                    //}
+                    //if (data.BenefitPay != 1) {
+                    //    $('#BenefitPay').addClass('d-none');
+                    //}
+                    //setsettings(arrTemp);
+                    //cartdata(0);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //alert(xhr, textStatus, errorThrown);
+                }
+            });
+        }
+    };
+    function Register() {
+        //get settings
+        var Order = new Object();
+        Order.Email = $('#Email').val();
+        Order.FirstName = $('#FirstName').val();
+        Order.LastName = $('#LastName').val();
+        Order.Password = $('#Password').val();
+        Order.ContactNo = $('#ContactNo').val();
+        var Masterorder = JSON.stringify({ 'data': Order });
+
+        if (chkLSsettings != null) {
+            $.ajax({
+                type: "POST",
+                url: 'api/account/loginregister',
+                data: Masterorder,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    alert("success 2")
+
+                    //var arrTemp = [];
+                    //arrTemp = getsettingsLS();
+                    //arrTemp.push({ DeliveryCharges: data.DeliveryCharges, ServiceCharges: data.ServiceCharges, OtherCharges: data.OtherCharges, TaxPercentage: data.TaxPercentage, MinimumOrderValue: data.MinimumOrderValue, COD: data.COD, Credimax: data.Credimax, PayPal: data.PayPal, BenefitPay: data.BenefitPay, TopHeaderText: data.TopHeaderText });
+                    //if (data.COD != 1) {
+                    //    $('#COD').addClass('d-none');
+                    //}
+                    //if (data.Credimax != 1) {
+                    //    $('#Credimax').addClass('d-none');
+                    //}
+                    //if (data.PayPal != 1) {
+                    //    $('#PayPal').addClass('d-none');
+                    //}
+                    //if (data.BenefitPay != 1) {
+                    //    $('#BenefitPay').addClass('d-none');
+                    //}
+                    //setsettings(arrTemp);
+                    //cartdata(0);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //alert(xhr, textStatus, errorThrown);
+                }
+            });
+        }
+    };
+</script>  

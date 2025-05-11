@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Card Payment Status";
+    Layout = null;
+}
+
+<div class="jumbotron main-content-wrap mb-0 section-ptb contact-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="search-error-wrapper">
+
+                    @if (ViewBag.IsPaymentDone)
+                    {
+                        <h2 class="text-success" style="font-size: 40px;" data-translate="00oc0">Payment Completed</h2>
+                        <p class="home-link" data-translate="00oc1">Your payment was successful. </p>
+                    }
+                    else
+                    {
+                        <h2 class="text-danger" style="font-size: 40px;" data-translate="00oc0">Payment Failed</h2>
+                        <p class="home-link" data-translate="00oc1">Your payment was not successful. Please try again.</p>
+                        <p class="home-link mb-0">Status: @ViewBag.Status</p>
+                        @*<a href="~/order/checkout" class="home-bacck-button" data-translate="00oc2">Back to Checkout</a>*@
+                    }
+
+                    @*<a href="~/home/index" class="home-bacck-button" data-translate="00oc6">Back to Shop</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
