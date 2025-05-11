@@ -1,0 +1,32 @@
+name: Build and Deploy ASP.NET to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Restore NuGet Packages
+        run: nuget restore Web/FlowerLink/FlowerLink.sln
+
+      - name: Build with MSBuild
+        run: msbuild Web/FlowerLink/FlowerLink.sln /p:Configuration=Release
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: flowerlink-bh
+          slot-name: production
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: Web/FlowerLink/FlowerLink/bin/Release
+
