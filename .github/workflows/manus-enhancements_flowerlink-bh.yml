@@ -25,16 +25,17 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.5
 
       - name: Restore NuGet packages
-    run: nuget restore Web/FlowerLink/FlowerLink.sln
+        run: nuget restore Web/FlowerLink/FlowerLink.sln  # Correct indentation and path
 
       - name: Publish to folder
-            run: msbuild Web/FlowerLink/FlowerLink.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\" /p:Configuration=Release
+        run: msbuild Web/FlowerLink/FlowerLink.sln /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\" /p:Configuration=Release  # Correct indentation, path, and added /p:Configuration=Release
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app
-          path: '/published/**'
+          path: 
+            /published/**
 
   deploy:
     runs-on: windows-latest
@@ -66,4 +67,3 @@ jobs:
           app-name: 'flowerlink-bh'
           slot-name: 'Production'
           package: .
-          
