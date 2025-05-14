@@ -196,6 +196,7 @@
     <Compile Include="Models\BLL\settingBLL.cs" />
     <Compile Include="Models\BLL\shopBLL.cs" />
     <Compile Include="Models\BLL\subcategoryBLL.cs" />
+    <Compile Include="Models\ViewModels\OrderTrackingViewModels.cs" />
     <Compile Include="Models\Service\baseService.cs" />
     <Compile Include="Models\Service\categoryService.cs" />
     <Compile Include="Models\Service\checkoutService.cs" />
