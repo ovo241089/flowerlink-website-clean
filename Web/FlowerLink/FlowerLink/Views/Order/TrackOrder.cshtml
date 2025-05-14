@@ -1,0 +1,141 @@
+@{
+    ViewBag.Title = "Track Your Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb-area section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="breadcrumb-title">Track Your Order</h2>
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="breadcrumb-item active">Track Order</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container section-ptb">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="track-order-form-area">
+                <p class="text-center mb-4">Enter your order ID and email address to track your order status.</p>
+                <form id="trackOrderForm">
+                    <div class="form-group">
+                        <label for="orderIdInput">Order ID</label>
+                        <input type="text" class="form-control" id="orderIdInput" name="orderId" placeholder="Enter your Order ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailInput">Email Address (Optional for logged-in users)</label>
+                        <input type="email" class="form-control" id="emailInput" name="email" placeholder="Enter your email address used for the order">
+                        <small class="form-text text-muted">Required if you are not logged in or tracking a guest order.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Track Order</button>
+                </form>
+            </div>
+
+            <div id="orderStatusResult" class="mt-5" style="display:none;">
+                <h4 class="mb-3">Order Status</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Order ID:</strong> <span id="resultOrderId"></span></p>
+                        <p><strong>Order Number:</strong> <span id="resultOrderNo"></span></p>
+                        <p><strong>Order Date:</strong> <span id="resultOrderDate"></span></p>
+                        <p><strong>Current Status:</strong> <span id="resultCurrentStatus" class="badge badge-info"></span></p>
+                        <p><strong>Total Amount:</strong> BD <span id="resultTotalAmount"></span></p>
+                        
+                        <h5 class="mt-4">Items in this Order:</h5>
+                        <ul id="resultOrderItems" class="list-group mb-3"></ul>
+                        
+                        <h5 class="mt-4">Order History:</h5>
+                        <ul id="resultOrderStatusHistory" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+             <div id="orderStatusError" class="mt-5 alert alert-danger" style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#trackOrderForm").submit(function (event) {
+                event.preventDefault();
+                var orderId = $("#orderIdInput").val();
+                var email = $("#emailInput").val();
+
+                if (!orderId) {
+                    $("#orderStatusError").text("Please enter an Order ID.").show();
+                    $("#orderStatusResult").hide();
+                    return;
+                }
+
+                // Clear previous results
+                $("#orderStatusResult").hide();
+                $("#orderStatusError").hide();
+                $("#resultOrderItems").empty();
+                $("#resultOrderStatusHistory").empty();
+
+                var apiUrl = "@Url.Action("GetOrderStatus", "Order")" + "/" + orderId;
+                var requestData = {};
+                if (email) {
+                    requestData.email = email;
+                }
+
+                $.ajax({
+                    url: apiUrl,
+                    type: "GET",
+                    data: requestData,
+                    success: function (response) {
+                        if (response.success && response.data) {
+                            var order = response.data;
+                            $("#resultOrderId").text(order.OrderID);
+                            $("#resultOrderNo").text(order.OrderNo);
+                            $("#resultOrderDate").text(new Date(order.OrderDate).toLocaleDateString() + " " + new Date(order.OrderDate).toLocaleTimeString());
+                            $("#resultCurrentStatus").text(order.CurrentStatus).removeClass("badge-info badge-success badge-warning badge-danger").addClass("badge-" + getStatusBadgeClass(order.CurrentStatus));
+                            $("#resultTotalAmount").text(parseFloat(order.TotalAmount).toFixed(2));
+
+                            if (order.Items && order.Items.length > 0) {
+                                order.Items.forEach(function(item) {
+                                    $("#resultOrderItems").append("<li class=\"list-group-item d-flex justify-content-between align-items-center\">" + item.ProductName + " (Qty: " + item.Quantity + ") <span class=\"badge badge-primary badge-pill\">BD " + parseFloat(item.TotalPrice).toFixed(2) + "</span></li>");
+                                });
+                            } else {
+                                $("#resultOrderItems").append("<li class=\"list-group-item\">No items found for this order.</li>");
+                            }
+
+                            if (order.History && order.History.length > 0) {
+                                order.History.forEach(function(historyItem) {
+                                    $("#resultOrderStatusHistory").append("<li class=\"list-group-item\"><strong>" + historyItem.Status + ":</strong> " + new Date(historyItem.Timestamp).toLocaleString() + (historyItem.Notes ? " - <em>" + historyItem.Notes + "</em>" : "") + "</li>");
+                                });
+                            } else {
+                                $("#resultOrderStatusHistory").append("<li class=\"list-group-item\">No status history available.</li>");
+                            }
+
+                            $("#orderStatusResult").show();
+                        } else {
+                            $("#orderStatusError").text(response.message || "Could not retrieve order status. Please check the Order ID and email.").show();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $("#orderStatusError").text("An error occurred while trying to track your order. Please try again later.").show();
+                        console.error("Track Order Error: ", xhr.responseText);
+                    }
+                });
+            });
+
+            function getStatusBadgeClass(status) {
+                if (!status) return "secondary";
+                status = status.toLowerCase();
+                if (status.includes("delivered") || status.includes("completed")) return "success";
+                if (status.includes("shipped") || status.includes("processing") || status.includes("progress")) return "info";
+                if (status.includes("pending") || status.includes("placed")) return "warning";
+                if (status.includes("cancelled") || status.includes("failed") || status.includes("rejected")) return "danger";
+                return "secondary"; // Default
+            }
+        });
+    </script>
+}
+

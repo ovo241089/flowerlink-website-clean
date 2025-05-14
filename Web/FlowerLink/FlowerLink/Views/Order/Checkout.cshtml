@@ -598,10 +598,9 @@ else
                         <form id="msform">
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active" id="account"><strong>Message</strong></li>
-                                <li id="personal"><strong>Address</strong></li>
-                                <li id="payment"><strong>Delivery</strong></li>
-                                <li id="confirm"><strong>Payment</strong></li>
+                                <li class="active" id="account" style="width: 33.33%;"><strong>Message</strong></li>
+                                <li id="personal" style="width: 33.33%;"><strong>Address & Delivery</strong></li>
+                                <li id="confirm" style="width: 33.33%;"><strong>Payment</strong></li>
                             </ul>
                             <!-- fieldsets -->
                             <fieldset>
@@ -631,54 +630,51 @@ else
 
                                 @*<input type="button" name="next" class="action-button" onclick="gotoLogin()" value="Continue to Login" />*@
                                 <input type="button" name="next" class="next action-button" onclick="LoginModal();" value="Continue to Address" />
-                            </fieldset>
-
-                            <fieldset>
+                            </fiel                            <fieldset>
                                 <div class="form-card" id="jumptoaddress">
-                                    <h2 class="fs-title">Address</h2>
+                                    <h2 class="fs-title">Address & Delivery Details</h2>
                                     <div class="">
                                         <div class="row">
-
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co4">Recipient Name *</span></label>
+                                                <label for="CustomerName"><span data-translate="000co4">Recipient Name *</span></label>
                                                 <input id="CustomerName" class="form-control" placeholder="Name" type="text" name="CustomerName" required>
+                                                <div class="invalid-feedback" data-translate="error_recipient_name">Please enter recipient's name.</div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co5">Recipient Contact *</span></label>
-
-                                                <input id="ContactNo" class="form-control" placeholder="Contact no." type="text" name="ContactNo" required>
+                                                <label for="ContactNo"><span data-translate="000co5">Recipient Contact *</span></label>
+                                                <input id="ContactNo" class="form-control" placeholder="Contact no." type="tel" name="ContactNo" pattern="[0-9]{8,15}" required>
+                                                <div class="invalid-feedback" data-translate="error_recipient_contact">Please enter a valid mobile number (8-15 digits).</div>
                                             </div>
-
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co1">Sender Name *</span></label>
+                                                <label for="SenderName"><span data-translate="000co1">Sender Name *</span></label>
                                                 <input id="SenderName" value="@Session["CustomerName"]" class="form-control" placeholder="Name" type="text" name="SenderName" required>
+                                                <div class="invalid-feedback" data-translate="error_sender_name">Please enter sender's name.</div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span>Sender Email </span></label>
+                                                <label for="SenderEmail"><span>Sender Email </span></label>
                                                 <input id="SenderEmail" value="@Session["CustomerEmail"]" class="form-control" placeholder="Email Address" type="email" name="SenderEmail" required>
+                                                <div class="invalid-feedback" data-translate="error_sender_email">Please enter a valid email address.</div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co3">Sender Contact *</span></label>
-                                                <input id="SenderContact" value="@Session["CustomerContactNo"]" class="form-control" placeholder="Contact no." type="text" name="SenderContact" required>
+                                                <label for="SenderContact"><span data-translate="000co3">Sender Contact *</span></label>
+                                                <input id="SenderContact" value="@Session["CustomerContactNo"]" class="form-control" placeholder="Contact no." type="tel" name="SenderContact" pattern="[0-9]{8,15}" required>
+                                                <div class="invalid-feedback" data-translate="error_sender_contact">Please enter a valid mobile number (8-15 digits).</div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span class="">Recipient Address </span></label>
+                                                <label for="Address"><span class="">Recipient Address </span></label>
                                                 <input id="Address" class="form-control" type="text" placeholder="House, Street, unit etc." name="Address" required>
+                                                <div class="invalid-feedback" data-translate="error_recipient_address">Please enter recipient's address.</div>
                                             </div>
                                             <div style="display:none">
                                                 <span id="longi"></span> /
                                                 <span id="lati"></span>
                                             </div>
                                             <div class="form-group col-md-12">
-
-                                                @*<input id="longitude" class="form-control" type="text" placeholder="25.728352 etc." name="longitude" required>*@
                                                 <input class="form-control" type="text" id="search_input" placeholder="Search for a place" name="SearchForLocation" />
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
-
                                         <div class="form-group col-md-12">
                                             <div id="information" style="display:none"></div>
                                             <div id="map-canvas" width="100%"></div>
@@ -694,151 +690,77 @@ else
                                                 Keep my identity secret
                                             </label>
                                         </div>
-
                                         <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="val-alert"></p>
                                     </div>
 
-
-                                </div>
-
-
-
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" id="NextStep" value="Next Step" />
-
-
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">Delivery</h2>
-
-                                    <div class="">
-
+                                    <hr/>
+                                    <h2 class="fs-title">Delivery Details</h2>
+                                     <div class="">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co6">Delivery Date  *</span></label>
+                                                <label for="DeliveryDate"><span data-translate="000co6">Delivery Date  *</span></label>
                                                 <div class="input-group mb-3">
                                                     <input id="DeliveryDate" class="form-control bg-white" type="text" placeholder="mm-dd-yyyy" readonly name="Date" required>
-
+                                                    <div class="invalid-feedback" data-translate="error_delivery_date">Please select a delivery date.</div>
                                                 </div>
-
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span data-translate="000co7">Delivery Time *</span></label>
+                                                <label for="DeliveryTime"><span data-translate="000co7">Delivery Time *</span></label>
                                                 <select id="DeliveryTime" class="custom-select" required>
-                                                    <option value="">Choose Delivery Time...</option>
+                                                    <option value="" data-translate="choose_delivery_time">Choose Delivery Time...</option>
                                                     <option>09:00 to 13:00</option>
                                                     <option>09:00 to 17:00</option>
                                                     <option>12:00 to 18:00</option>
                                                     <option>15:00 to 22:00</option>
                                                     <option>Anytime</option>
                                                 </select>
+                                                <div class="invalid-feedback" data-translate="error_delivery_time">Please select a delivery time.</div>
                                             </div>
-
                                         </div>
                                         <div class="form-row">
-
                                             <div class="form-group col-md-6">
-                                                <label><span class="" data-translate="000co8">Country *</span></label>
+                                                <label for="Country"><span class="" data-translate="000co8">Country *</span></label>
                                                 <select id="Country" class="custom-select" required>
-                                                    <option value="">Select Country...</option>
-                                                    <option selected>Bahrain</option>
+                                                    <option value="" data-translate="select_country">Select Country...</option>
+                                                    <option value="Bahrain" selected data-translate="bahrain">Bahrain</option>
                                                 </select>
+                                                <div class="invalid-feedback" data-translate="error_country">Please select a country.</div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label><span class="" data-translate="000co9">City *</span></label>
+                                                <label for="City"><span class="" data-translate="000co9">City *</span></label>
                                                 <input id="City" class="form-control" type="text" placeholder="City Name" name="City" required>
+                                                <div class="invalid-feedback" data-translate="error_city">Please enter a city name.</div>
                                             </div>
                                         </div>
-
-
                                         <div class="form-row">
-
-                                            <div class="form-group col-md-6">
-                                                <label><span class="" data-translate="000co11">Place Type *</span></label>
+                                                   <div class="form-group col-md-6">
+                                                <label for="PlaceType"><span class="" data-translate="000co11">Place Type *</span></label>
                                                 <select id="PlaceType" class="custom-select" required>
-                                                    <option value="">Select Place Type...</option>
-                                                    <option>Office</option>
-                                                    <option>Hospital</option>
-                                                    <option>House</option>
-                                                    <option>Apartment</option>
-                                                    <option>Shop</option>
-                                                    <option>Outlet</option>
-                                                    <option>Other</option>
+                                                    <option value="" data-translate="select_place_type">Select Place Type...</option>
+                                                    <option data-translate="office">Office</option>
+                                                    <option data-translate="hospital">Hospital</option>
+                                                    <option data-translate="house">House</option>
+                                                    <option data-translate="apartment">Apartment</option>
+                                                    <option data-translate="shop">Shop</option>
+                                                    <option data-translate="outlet">Outlet</option>
                                                 </select>
+                                                <div class="invalid-feedback" data-translate="error_place_type">Please select a place type.</div>
+                                            </div>        </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label><span class="">Nearest Place </span></label>
                                                 <input id="NearestPlace" class="form-control" type="text" placeholder="Park, Bank, Hotel etc." name="NearestPlace">
                                             </div>
                                         </div>
-
                                     </div>
                                     <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="next-alert"></p>
-
-
-
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="make_payment" class="next action-button" id="Confirm" value="Confirm" />
-
-
-
+                                <input type="button" name="next" class="next action-button" id="NextStep" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">
-
-                                    <div class="form-group">
-
-
-                                        <div class="container w-100">
-                                            <h5 class="text-center m-0 mt-2" data-translate="00ch8">Payment Option</h5>
-                                            <div class="justify-content-center pb-50 pt-4 row">
-                                                <div class="btn-group d-flex px-2" role="group" aria-label="Basic example" id="Payment-btn">
-                                                    <button id="COD" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="COD">
-
-                                                        <img style="width:100px;" src="~/Content/assets/images/logo/cod.png" />
-                                                    </button>
-                                                    <button id="Credimax" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="Credimax">
-
-                                                        <img style="width:100px;" src="~/Content/assets/images/logo/credimax1.png" />
-                                                    </button>
-                                                    <button id="PayPal" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="PayPal">
-                                                        <img style="width:100px;" src="~/Content/assets/images/logo/tap-payment-logo.png" />
-                                                    </button>
-                                                    <button id="BenefitPay" type="button" class="btn btn-pay button-apply-coupon border-0 " onclick="getbuttonvalue(this)" value="BenefitPay">
-                                                        <img style="width:48px;" src="~/Content/assets/images/logo/benefitlogo.png" />
-                                                    </button>
-                                                </div>
-                                                <p class="mb-0 mt-30 text-danger px-3 text-center">Invoice will be sent only by email and recipient will not get a printed copy.</p>
-                                                <p id="Card-text-cs"></p>
-
-                                                <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="f-alert"></p>
-
-
-                                            </div>
-
-
-
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="order-button-payment">
-
-                                        <a href="javascript:;" id="checkout" class="btn-place-order"><span data-translate="000co14">Place Order</span></a>
-                                        <a href="javascript:;" id="paypal-button" class="btn-block border-0"><span></span></a>
-                                        <a class="btn-place-order" id="btn-load">
-                                            <span class="spinner-border spinner-border-sm"></span>
-                                            Loading..
-                                        </a>
-
-                                        <p class="text-danger font-weight-bold text-center bg-category2 rounded mt-3 mb-2" id="payment-alert"></p>
-                                        <p class="text-danger font-weight-bold" id="Text-Error"></p>
-                                        <p class="text-danger font-weight-bold text-center bg-category2 rounded  " id="paypal-validation"></p>
+                                    <h2 class="fs-title">Payment</h2>           <p class="text-danger font-weight-bold text-center bg-category2 rounded  " id="paypal-validation"></p>
                                     </div>
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
